@@ -1,65 +1,66 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>네이버 요약 뉴스 2024.10</title>
-    <!-- 스타일 요소 -->
-     <style>
-      /* CSS 인터널 코딩 구역 */
-      /* 
-        선택자{
-          속성:값;
-        }
+    <head>
+        <meta charset="UTF-8" />
+        <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+        <title>네이버 요약 뉴스 2024.10</title>
+        <!-- 스타일 요소 -->
+        <style>
+            /* CSS 인터널 코딩 구역 */
+            /* 
+              선택자{
+               속성:값;
+             }
+             -> 선택자는 기본적으로
+             요소명 / 아이디명 / 클래스명
+           */
+            /* header{ 요소명 */
+            /* #top-area{ 아이디*/
+            .part {
+                /* 클래스명 */
+                /* 보더(경계선) */
 
-        -> 선택자는 기본적으로
-        요소명 / 아이디명 / 클래스명
-      */
-      /* header{ 요소명 */
-      /* #top-area{ 아이디*/
-      .part{ /* 클래스명 */
-        /* 보더(경계선) */
+                border: 10px solid #f00;
 
-        border: 10px solid #f00;
+                /* 안쪽 여백 (패딩) */
+                padding: 15px;
+            }
+        </style>
+    </head>
+    <body>
+        <!-- 1. 상단 영역 -->
+        <header id="top-area" class="part">
+            <!-- 1-1. 타이틀 -->
+            <h1>네이버 요약 뉴스</h1>
+            <!-- 1-2. 메뉴 -->
+            <nav class="menu">
+                <a href="index.html">
+                    <img
+                        src="images/naver_logo.png"
+                        alt="네이버 로고"
+                        style="width: 40px; vertical-align: middle"
+                    />
+                </a>
+                <a href="sub.html">정치</a>
+                <span> | </span>
+                <a href="sub.html">경제</a>
+                <span> | </span>
+                <a href="sub.html">사회</a>
+                <span> | </span>
+                <a href="sub.html">IT/과학</a>
+                <span> | </span>
+                <a href="sub.html">TV/연예</a>
+            </nav>
+        </header>
+        <!-- <div id = "header"></div> -->
+        <!-- 2. 메인 영역 -->
+        <main id="main-area" class="part"></main>
+        <!-- <div id="main"></div> -->
+        <!-- 3. 하단 영역 -->
+        <footer id="info-area" class="part"></footer>
+        <!-- <div id="footer"></div> -->
 
-/* 안쪽 여백 (패딩) */
-      padding: 15px;
-      }
-     </style>
-  </head>
-  <body>
-    <!-- 1. 상단 영역 -->
-    <header id="top-area" class="part">
-      <!-- 1-1. 타이틀 -->
-      <h1>네이버 요약 뉴스</h1>
-      <!-- 1-2. 메뉴 -->
-      <nav class="menu">
-        <a href="index.html">
-          <img
-            src="images/naver_logo.png" 
-            alt="네이버 로고" 
-            style="width: 40px; vertical-align: middle;"
-          />
-        </a>
-        <a href="sub.html">정치</a>
-        <span> | </span>
-        <a href="sub.html">경제</a>
-        <span> | </span>
-        <a href="sub.html">사회</a>
-        <span> | </span>
-        <a href="sub.html">IT/과학</a>
-        <span> | </span>
-        <a href="sub.html">TV/연예</a>
-</header>
-<!-- <div id = "header"></div> -->
-<!-- 2. 메인 영역 -->
-<main id="main-area" class="part"></main>
-    <!-- <div id="main"></div> -->
-    <!-- 3. 하단 영역 -->
-    <footer id="info-area" class="part"></footer>
-    <!-- <div id="footer"></div> -->
-
-    <!-- 
+        <!-- 
         [ HTML5에서 등장한 div 친구들 ]
         - div에 내용을 구분하는 이름을 지어줌
         - 의미가 있는요소를 시멘틱(sementic)태그라고 함!
@@ -73,7 +74,7 @@
         ( section/article 내부에 h1~h6 태그사용권고)
     -->
 
-    <!-- 
+        <!-- 
         [ 요소 명명법 ]
         1. 아이디는 #, 클래스는 . (약어로만들기)
         2. 이름은 구체적으로 만들고
@@ -82,7 +83,7 @@
         예) <div class="aa bb cc" id="ee"></div> 
     -->
 
-    <!-- 
+        <!-- 
         [ img 요소 ]
         - img 는 이미지를 불러오는 요소
         - 필수속성
@@ -101,6 +102,5 @@
         1. style 속성 : 요소에 인라인으로 CSS 속성값을 세팅함
         예) <요소명 style = "속성 : 값; 속성 : 값">
         2. title 속성 : 툴팁 제공 속성(마우스 오버 시, 등장)
-    -->
-  </body>
+    --></body>
 </html>
