@@ -16,14 +16,40 @@
            */
             /* header{ 요소명 */
             /* #top-area{ 아이디*/
+            /* 상단영역 */
+            #top-area {
+                /* 중앙 정렬 */
+                text-align: center;
+                /* 배경색 */
+                background-color: #d2f6d5;
+            }
+
+            /* 2. 메인 영역 */
+            /* 3. 하단 영역 */
+            #info-area{
+                text-align: center;
+            }
+
+            /* 최상위 박스 공통 */
             .part {
                 /* 클래스명 */
-                /* 보더(경계선) */
-
-                border: 10px solid #f00;
-
-                /* 안쪽 여백 (패딩) */
+                /* 
+                보더(경계선) 
+                border: 두께 종류 색상
+                종류(선형 solid, 대쉬선 dashed, )
+                */
+                border: 2px dashed #31ca78;
+                /* 둥근 모서리 brd*/
+                border-radius: 10px;
+                /* 안쪽여백(패딩) */
                 padding: 15px;
+            }
+            /*  주소 지정 */
+            address {
+                /* 기본 이텔릭체 제거 fsn*/
+                font-style: normal;
+                /* 글자 중앙 정렬 tac */
+                text-align: center;
             }
         </style>
     </head>
@@ -53,11 +79,18 @@
             </nav>
         </header>
         <!-- <div id = "header"></div> -->
+
         <!-- 2. 메인 영역 -->
         <main id="main-area" class="part"></main>
+
         <!-- <div id="main"></div> -->
         <!-- 3. 하단 영역 -->
-        <footer id="info-area" class="part"></footer>
+        <footer id="info-area" class="part">
+            <h5>서울시 강남구 역삼동 119 대호B 8F</h5>
+            <h5>대표: Tom Brace Parker</h5>
+            <h5>전화: 010-2222-3333</h5>
+        </footer>
+
         <!-- <div id="footer"></div> -->
 
         <!-- 
