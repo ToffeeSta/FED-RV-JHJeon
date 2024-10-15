@@ -30,141 +30,10 @@
       rel="stylesheet"
     />
     <!-- 스타일 요소 -->
-    <style>
-      /* CSS 인터널 코딩 구역 */
-      /* 웹폰트 import */
-      @import url("https://fonts.googleapis.com/css2?family=Black+Han+Sans&family=Sunflower&display=swap");
-      /* 
-        선택자{
-        속성:값;
-        }
-        -> 선택자는 기본적으로
-        요소명 / 아이디명 / 클래스명
-      */
-      /* header{ 요소명 */
-      /* #top-area{ 아이디*/
-      /* 상단영역 */
-      #top-area {
-        /* 중앙 정렬 */
-        text-align: center;
-        /* 배경색 */
-        background-color: #d2f6d5;
-      }
+    <!-- <style></style> -->
 
-      /* 전체 타이틀 */
-      /* CSS에서 띄어쓰기는 하위요소를 선택함! */
-      #top-area h1 {
-        /* 글자체 ff 
-          콤마로 연결된 글자체는 앞의 체가 없을 경우 대체제임! 모두 없을 시, 브라우저 기본체로 나옴 */
-        font-family: "Do Hyeon",
-          sans-serif;
-        /* 글자 크기 fz */
-        font-size: 50px;
-        /* 글자 색 c */
-        color: #454b46;
-        /* 글자 그림자 ts
-          text-shadow: x축 y축 블러 색; */
-        text-shadow: 1px 1px 10px
-          #6c6c6cad;
-      }
-
-      /* 메뉴 a요소
-        기본 셋팅된 글자색, 밑줄 변경 */
-      .menu a {
-        font-family: "Sunflower",
-          sans-serif; /* 글자체 ff */
-        color: rgb(
-          81,
-          81,
-          81
-        ); /* 글자색 */
-        text-decoration: none; /* 글자 밑줄 없애기 tdn */
-        font-size: 22px; /* 글자 크기 fz */
-        font-weight: normal; /* 글자 두께 설정 */
-      }
-
-      /* a요소에 마우스 오버 시 */
-      .menu span + a:hover {
-        color: #262626; /* 글자색 */
-        /* text-decoration: overline; 글자 윗줄 tdo */
-        text-decoration: underline; /* 글자 아랫줄 tdu*/
-        text-decoration-style: wavy; /* 글자 데코 스타일 tdst */
-        font-family: "Sunflower", sans-serif;
-        font-size: 26px;
-        font-weight: bold;
-      }
-
-      /* 첫번째 a메뉴를 빼고 두번째부터 끝까지 양쪽 마진 적용하기
-        주의) 인라인 요소는 위아해 마진 적용 안됨! */
-      .menu span + a {
-        /* 앞에 span형제 요소가 있는 a만 선택 + 는 형제선택자 */
-        margin: 4px;
-      }
-
-      /* 2. 메인 영역 */
-      #main-area {
-        /* 위, 아래 마진 */
-        /* margin-top: 15px;
-          margin-bottom: 15px; */
-        margin: 15px auto;
-
-        /* 
-          마진(margin), 패딩(padding)규칙
-          - 마진은 바깥여백, 패딩은 안쪽 여백
-          margin: 값; - 4방향 모두
-          margin: 값 값; - 상하, 좌우
-          margin: 값 값 값 - 상단, 좌우, 하단
-          margin: 값 값 값 값 - 상, 우, 하, 좌
-          ((방향별 속성 있음))
-          margin-top: 값;
-          margin-right: 값;
-          margin-bottom: 값;
-          margin-left: 값;
-          - 패딩도 동일함!
-          ((크기를 가지는 블록박스 중앙 정렬))
-          margin: 0 auto;
-          -> 박스의 마진을 위아래 0
-          양쪽 마진은 auto!, 즉, 자동으로 같은 크기 배분
-        */
-      }
-      /* 3. 하단 영역 */
-      #info-area {
-        background-color: #e6edea;
-      }
-
-      /* 최상위 박스 공통 */
-      /* 클래스명 */
-      .part {
-        /* 기로크기를 지정하면 화면이 박스보다 작아질 경우 가로 스크롤 생김 */
-        /* width: 1280px; */
-
-        /* 최대 가로 크기 설정 maw */
-        max-width: 1280px;
-
-        /* 마영오로 박스 중앙정렬 */
-        margin: 0 auto;
-
-        /* 
-          보더(경계선) 
-          border: 두께 종류 색상
-          종류(선형 solid, 대쉬선 dashed, 점선 dotted)
-        */
-        border: 2px dashed #31ca78;
-        /* 둥근 모서리 brd*/
-        border-radius: 20px;
-        /* 안쪽여백(패딩) */
-        padding: 15px;
-      }
-      /*  주소 셋팅 */
-      address {
-        /* 기본 이텔릭체 제거 fsn*/
-        font-style: normal;
-        /* 글자 중앙 정렬 tac */
-        text-align: center;
-        color: #303030;
-        font-size: 13px;
-      }
-    </style>
+    <!-- 외부 CSS 불러오기 -->
+     <link rel="stylesheet" href="./css/common.css">
   </head>
   <body>
     <!-- 1. 상단 영역 -->
@@ -208,7 +77,7 @@
     <!-- 3. 하단 영역 -->
     <footer id="info-area" class="part">
       <address>
-        서울시 강남구 역삼동 119 대호B
+        주소: 서울시 강남구 역삼동 119 대호B
         8F <br />
         대표: Tom Brace Parker
         <br />
