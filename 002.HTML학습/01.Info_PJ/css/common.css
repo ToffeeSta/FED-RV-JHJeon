@@ -37,6 +37,10 @@
   text-shadow: 3px 3px 10px #6c6c6cad;
 }
 
+.part a{
+  text-decoration: none;
+}
+
 /* 메뉴 a요소
         기본 셋팅된 글자색, 밑줄 변경 */
 .menu a {
