@@ -37,7 +37,7 @@
   text-shadow: 3px 3px 10px #6c6c6cad;
 }
 
-.part a{
+.part a {
   text-decoration: none;
 }
 
@@ -99,7 +99,6 @@
 #info-area {
   background-color: #e6edea;
 }
-
 /* 최상위 박스 공통 */
 /* 클래스명 */
 .part {
