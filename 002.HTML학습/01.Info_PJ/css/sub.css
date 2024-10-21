@@ -171,6 +171,9 @@ h2.tv {
 
 /* 2-5. 기사내용 */
 .contents p {
+  margin: 0;
+  margin-bottom: 25px;
+
   font-size: 20px;
   line-height: 2.1;
 
@@ -182,7 +185,52 @@ h2.tv {
         - 젠코딩 시, 숫자만 쓰면 배수로 표현되므로 주의 요망!! 예) lh20 -> line-height: 20; */
   color: #303038;
 }
+
+/* 중요 글자 Strong */
+.contents p strong{
+    color: darkmagenta;
+}
+
+/* 강조 글자 em */
+.contents p em{
+    /* 글자색 */
+    color: lightseagreen;
+    /* 글자 그린자 ts */
+    text-shadow: 2px 2px 2px #000007;
+    /* 글자 윗줄: overline : tdo */
+    /* 글자 아랫줄: underline : tdu */
+    /* text-decoration: overline; */
+    text-decoration: underline wavy;
+    /* text-decoration: 유형 (스타일) */
+    /* 스타일이 있을 경우 뒤에 띄어쓰기로 쓸 수 있음 */
+
+}
 /* 2-5.5. 인용블록영역 */
+.quote-box{
+    /* 윗쪽 보더 주기: bdt */
+    border-top: 2px dashed gray;
+    /* 윗쪽 마진: mt */
+    margin-top: 20px;
+    display: inline-block;
+    background-color: #e6e6e6;
+    padding: 15px;
+    border-radius: 10px;
+
+}
+.quote-box blockquote{
+    /* 기본 마진 없애기 */
+    margin: 0;
+    color: darkblue;
+    tab-size: 20px;
+    line-height: 1.8;
+    text-align: justify;
+}
+
+/* 이미지 오른쪽으로 보내고 옆에 글자 흘러가기 */
+.quote-box blockquote img{
+    float: right;
+    margin-left: 10px;
+}
 /* 2-6. 기자정보 */
 /* 2-7. 기사원문 */
 /* 주해영역 */
