@@ -161,6 +161,7 @@ h2.tv{
     /* fugure 요소 기본마진 없앰 */
     margin: 0;
 }
+/* 기사 이미지 */
 .article-picture img{
     width: 100%;
 }
