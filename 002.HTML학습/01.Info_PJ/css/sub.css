@@ -43,7 +43,7 @@
 태그명+이름 방식의 선택자는 종속선택자*/
 h2.sub-title{
     /* 글자체(웹폰트) font-family (ff) */
-    font-family: "Single Day", cursive;
+    font-family: "Do Hyeon", cursive;
     /* 글자크기 : font-size (fz) */
     font-size: 38px;
     /* 글자두께 : font-weight (fw)
@@ -373,4 +373,13 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
 /* 작품 이미지 */
 .work img {
     border: 20px ridge goldenrod;
+}
+
+/* 이미지 설명 */
+.work figcaption {
+    /* 글자 관련 설정 */
+    font-family: "Do Hyeon", cursive;
+    font-size: 20px;
+    color: darkorchid;
+    font-weight: bold;
 }
