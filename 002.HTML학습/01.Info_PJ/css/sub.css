@@ -383,3 +383,10 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
     color: darkorchid;
     font-weight: bold;
 }
+
+/* 작품명만 따로 디자인 cite는 작품명 요소 (시멘틱 구조화다!) */
+.work figcaption cite {
+    color: darkmagenta;
+    /* 기본 이텔릭체 해제 : fsn */
+    font-style: normal;
+}
