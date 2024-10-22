@@ -351,10 +351,188 @@
             alt="뭉크의 절규"
           />
           <figcaption>
-            뭉크의 &lt;<cite>절규</cite>&gt;
+            뭉크의
+            &lt;<cite>절규</cite>&gt;
           </figcaption>
         </figure>
       </article>
+
+      <!-- 
+        [ 순서없는 리스트 : ul ]
+        unordered list
+
+        (참고: 블릿옵션
+        https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_ul_type_css)
+ 
+        [ 순서있는 리스트 : ol ]
+        ordered list
+
+        (참고: 순서표시옵션
+        https://www.w3schools.com/tags/tryit.asp?filename=tryhtml_ol_type_all_css)
+
+        [ ul/ol 공통사항 ]
+        - 하위필수요소 : li (개별리스트)
+        - 주의 : 하위에 li 이외의 블록요소나 
+        그 어떤 요소도 직계자식으로 사용할 수 없다!
+        예) <ul><li></li><div></div></ul> -> 사용불가!
+
+       -->
+
+      <!-- 주요 뉴스 : ul -->
+      <article
+        class="main-news news-box"
+      >
+        <h3>주요 뉴스</h3>
+        <ul>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/article/081/0003489066"
+              target="_blank"
+              >“자궁 밖에서 살수
+              있는데”…‘36주차 낙태’
+              병원장·집도의 ‘살인 혐의’
+              구속영장
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/article/081/0003489077"
+              target="_blank"
+              >“비자 면제해줬더니
+              불법체류”…제주서 중국인
+              1만명이나
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/article/081/0003489103"
+              target="_blank"
+              >“조현병 환자 X소리” 막말
+              퍼붓다…의협회장 탄핵 위기
+            </a>
+          </li>
+        </ul>
+        <!-- 랭킹 뉴스 : ol -->
+        <h3>랭킹 뉴스</h3>
+        <ol>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/article/081/0003489066"
+              target="_blank"
+              >“자궁 밖에서 살수
+              있는데”…‘36주차 낙태’
+              병원장·집도의 ‘살인 혐의’
+              구속영장
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/ranking/article/081/0003489044"
+              target="_blank"
+              >“5조원대 무기 자체구매할
+              듯” K방산 큰손, 갑자기
+              방향 튼 이유는
+            </a>
+          </li>
+          <li>
+            <a
+              href="https://n.news.naver.com/mnews/article/081/0003489077"
+              target="_blank"
+              >“비자 면제해줬더니
+              불법체류”…제주서 중국인
+              1만명이나
+            </a>
+          </li>
+        </ol>
+      </article>
+
+      <!-- 분야별 뉴스 : dl -->
+      <article
+        class="sec-news news-box"
+      >
+      <br>
+      <h2>분야별 뉴스</h2>
+        <h3>
+          <dl>
+            <!-- 경제파트 -->
+            <dt>경제</dt>
+            <dd>
+              <a
+                href="https://n.news.naver.com/mnews/article/008/0005103646"
+                target="_blank"
+                >연예인 모델 안 쓰는
+                교촌, 새 얼굴로 변우석
+                발탁</a
+              >
+            </dd>
+            <dd>
+              <a
+                href="https://n.news.naver.com/mnews/article/366/0001026134"
+                target="_blank"
+                >中 기업 메모리 반도체
+                생산량 확대… “과잉 공급
+                우려”</a
+              >
+            </dd>
+            <!-- 사회파트 -->
+            <dt>사회</dt>
+            <dd>
+              <a
+                href="https://n.news.naver.com/mnews/article/081/0003489058"
+                target="_blank"
+                >한 알에 두 종류 마약
+                성분…남해안 퍼진
+                신종마약</a
+              >
+            </dd>
+            <dd>
+              <a
+                href="https://n.news.naver.com/mnews/article/023/0003865586"
+                target="_blank"
+                >韓총리 “노인 기준 나이
+                75세 상향 검토하겠다”</a
+              >
+            </dd>
+            <!-- TV/연예파트 -->
+            <dt>TV/연예</dt>
+            <dd>
+              <a
+                href="https://n.news.naver.com/mnews/article/003/0012856697"
+                target="_blank"
+                >경찰 조사 마친
+                '불법도박' 이진호 "물의
+                일으켜 죄송"</a
+              >
+            </dd>
+            <dd>
+              <a
+                href="https://m.entertain.naver.com/article/437/0000415295"
+                target="_blank"
+                >전세계에서 흥얼거리는
+                로제의 'APT.' 열풍</a
+              >
+            </dd>
+          </dl>
+        </h3>
+      </article>
+
+      <!-- 
+        [ 용어정의리스트 : dl ]
+        
+        dl > dt + dd
+        __________________
+
+        dl : 용어 리스트
+        (defines the description list)
+        dt : 용어정의
+        (defines the term)
+        dd : 용어설명
+        (description each term)
+        ________________________
+        주의 - dl은 반드시 자식요소로 dt와 dd가
+        반드시 한번이상 사용되어야 함!!!
+        또 주의 - dt와 dd는 형제관계임!(자식아님!)
+      -->
 
       <!-- 
         [ html요소에서 특수문자 처리 ]
