@@ -428,7 +428,8 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
 
 .news-box h3 {
   /* 글자체 (웹폰트) : ff */
-  font-family: "Do Hyeon", sans-serif;
+  font-family: "Black Han Sans",
+    sans-serif;
   /* 두껍지 않게 fwn */
   font-weight: normal;
   /* 글자크기 : fz */
@@ -452,7 +453,17 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
   color: #222;
   /* 밑줄없앰 */
   text-decoration: none;
+
+  /* [ 한줄 말줄임 셋팅하기 ] */
+  /* 1. 줄바꿈 방지 : wh */
+  white-space: nowrap;
+  /* 2. 넘치는 요소 숨기기(전제조건 inline이 아닐 것!) */
+  overflow: hidden; /* oh */
+  display: block; /* db : a는 inline이니까 변경 */
+  /* 3. 넘치는 글자 말줄임 표시(...) : tov */
+  text-overflow: ellipsis;
 }
+
 .news-box a:hover {
   /* 글자크기 */
   font-size: 18px;
@@ -474,7 +485,7 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
   list-style: none;
 }
 /* ol은 숫자값 살리기 */
-.news-box ol{
+.news-box ol {
   list-style: decimal;
   padding-left: 20px;
 }
@@ -489,31 +500,72 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
 .main-news a::before {
   /* 맨앞 */
   /* 가상요소 필수 속성 content : ct */
-  content: "";
+  content: "📃";
   margin: 5px;
   font-size: 20px;
 }
 
 .main-news a::after {
   /* 맨뒤 */
-  content: '📜';
+  content: "📜";
   /* url을 사용하면 이미지를 넣을 수 있으나 크기 조정 안됨! */
-  width: 15px; /* 크기 조절 안됨 */
+  /* width: 15px; 적용 안됨 */
 }
 
 /* 가상요소로 아이콘 넣기 
     이미지 같은 요소를 CSS에서 가상으로 넣읋 수 있음(가상은 실제 태그요소 아님) 
       앞에 넣는 가상요소는 ::before
       뒤에 넣는 가상요소는 ::after
-      (기본 필수 속성은? content속성) 
+      (기본 필수 속성은? content속성)
+
+      [ CSS의 가상요소 : before, after ]
+    - 모든 요소는 맨앞과 맨뒤에 가상요소를 사용할 수 있다!
+    - 가상요소 표기법은 요소명 뒤에 콜론2개를 겹쳐씀(::)
+    - 맨앞은 before, 맨뒤는 after
+    - 필수속성 : content
+    - 이미지는 content 속성값으로 url() 사용!
 */
 
-.main-news li:first-child a{
+.main-news li:first-child a {
   color: red;
 }
-.main-news li:last-child a{
+.main-news li:last-child a {
   color: green;
 }
-.main-news li:nth-child(2) a{
+.main-news li:nth-child(2) a {
   color: blue;
 }
+
+/* 분야별 뉴스 */
+.sec-news dt {
+  font-family: "Do Hyeon", cursive;
+  font-size: 30px;
+  border: 4px dashed lightblue;
+  /*  */
+  display: inline-block;
+  /* 원형 둥근 모서리 */
+  border-radius: 50%;
+}
+
+/* dt 따로 순서별 디자인 설정 */
+.sec-news dt:first-of-type{
+  color: red;
+  background: lightgreen;
+  border-color: yellowgreen;
+}
+.sec-news dt:nth-of-type(2){
+  color: blue;
+  background: lightcoral;
+  border-color: magenta;
+}
+.sec-news dt:last-of-type{
+  color: green;
+  background: goldenrod;
+  border-color: gold;
+}
+/* 
+  [ 여러종류의 태그에서 순서별 선택법 ]
+   :first-of-type 같은 종류 중 첫번째 요소
+   :last-of-type 같은 종류 중 마지막째 요소
+   :nth-of-type 같은 종류 중 n번째 요소
+*/
