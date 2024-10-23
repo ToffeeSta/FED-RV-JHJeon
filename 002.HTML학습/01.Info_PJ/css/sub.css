@@ -426,7 +426,7 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
   padding: 20px 0;
 }
 
-.news-box h3{
+.news-box h3 {
   /* 글자체 (웹폰트) : ff */
   font-family: "Do Hyeon", sans-serif;
   /* 두껍지 않게 fwn */
@@ -434,12 +434,16 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
   /* 글자크기 : fz */
   font-size: 30px;
   /* 배경 그라데이션 : bg: linear-gradient*/
-  background: linear-gradient(to right, lightcoral, transparent);
+  background: linear-gradient(
+    to right,
+    lightcoral,
+    transparent
+  );
   /* 패딩 : p */
   padding: 10px;
 }
 
-.news-box a{
+.news-box a {
   /* 글자크기 17 */
   font-size: 17px;
   /* 줄간격 2.5배 */
@@ -449,7 +453,7 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
   /* 밑줄없앰 */
   text-decoration: none;
 }
-.news-box a:hover{
+.news-box a:hover {
   /* 글자크기 */
   font-size: 18px;
   /* 글자색 */
@@ -459,3 +463,47 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
   /* 글자 그림자 */
   text-shadow: 1px 1px 1px #282828ba;
 }
+
+/* 뉴스박스 공통 초기화 하기 ul, ol은 기본 마진, 패딩, 불릿, 번호 등 초기화 필요함  */
+.news-box ul,
+.news-box ol {
+  /* 마진, 패딩 0 */
+  margin: 0;
+  padding: 0;
+  /* 불릿, 숫자표시 리스트 없앰 : lin */
+  list-style: none;
+}
+/* ol은 숫자값 살리기 */
+.news-box ol{
+  list-style: decimal;
+  padding-left: 20px;
+}
+
+/* dl, dd는 기본 마진이 있음 */
+.news-box dl,
+.news-box dl dd {
+  margin: 0;
+}
+
+/* 주요뉴스 개별 설정하기 */
+.main-news a::before {
+  /* 맨앞 */
+  /* 가상요소 필수 속성 content : ct */
+  content: "";
+  margin: 5px;
+  font-size: 20px;
+}
+
+.main-news a::after {
+  /* 맨뒤 */
+  content: '📜';
+  /* url을 사용하면 이미지를 넣을 수 있으나 크기 조정 안됨! */
+  width: 15px; /* 크기 조절 안됨 */
+}
+
+/* 가상요소로 아이콘 넣기 
+    이미지 같은 요소를 CSS에서 가상으로 넣읋 수 있음(가상은 실제 태그요소 아님) 
+      앞에 넣는 가상요소는 ::before
+      뒤에 넣는 가상요소는 ::after
+      (기본 필수 속성은? content속성) 
+*/
