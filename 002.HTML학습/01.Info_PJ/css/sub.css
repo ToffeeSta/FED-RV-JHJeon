@@ -507,3 +507,13 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
       뒤에 넣는 가상요소는 ::after
       (기본 필수 속성은? content속성) 
 */
+
+.main-news li:first-child a{
+  color: red;
+}
+.main-news li:last-child a{
+  color: green;
+}
+.main-news li:nth-child(2) a{
+  color: blue;
+}
