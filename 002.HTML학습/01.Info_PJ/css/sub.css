@@ -331,23 +331,29 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
 가상클래스란 마치 클래스를 준것 같다는 의미
 */
 .article-link a:hover {
-    /* 배경색변경 : bgc */
-    background-color: yellow;
-    /* 글자색 변경 : c */
-    color: red;
-    /* 박스그림자 : bxsh */
-    box-shadow: 0 0 5px 1px darkred;
-    /* box-shadow: x축 y축 블러 확대 색 */
+  /* 배경색변경 : bgc */
+  background-color: yellow;
+  /* 글자색 변경 : c */
+  color: red;
+  /* 박스그림자 : bxsh */
+  box-shadow: 0 0 5px 1px darkred;
+  /* box-shadow: x축 y축 블러 확대 색 */
 }
 
 /* 주해영역 */
 /* 오늘의 작품 & 느낌 */
 .work {
-    /* 전체 중앙 정렬 */
-    text-align: center;
-    background: linear-gradient(45deg, lightgreen, lightgoldenrodyellow ,lightcoral);
-    padding: 20px;
-    box-shadow: inset 0 0 10px 1px #00000075;
+  /* 전체 중앙 정렬 */
+  text-align: center;
+  background: linear-gradient(
+    45deg,
+    lightgreen,
+    lightgoldenrodyellow,
+    lightcoral
+  );
+  padding: 20px;
+  box-shadow: inset 0 0 10px 1px
+    #00000075;
 }
 
 /* 그라데이션 
@@ -411,3 +417,45 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
   font-style: normal;
 }
 
+/* 뉴스박스 공통 클래스 : .news-box */
+.news-box {
+  border-top: 2px dashed #ccc;
+  /* 상하단 마진 : m */
+  margin: 20px 0;
+  /* 상하단 패딩 : p */
+  padding: 20px 0;
+}
+
+.news-box h3{
+  /* 글자체 (웹폰트) : ff */
+  font-family: "Do Hyeon", sans-serif;
+  /* 두껍지 않게 fwn */
+  font-weight: normal;
+  /* 글자크기 : fz */
+  font-size: 30px;
+  /* 배경 그라데이션 : bg: linear-gradient*/
+  background: linear-gradient(to right, lightcoral, transparent);
+  /* 패딩 : p */
+  padding: 10px;
+}
+
+.news-box a{
+  /* 글자크기 17 */
+  font-size: 17px;
+  /* 줄간격 2.5배 */
+  line-height: 2.5;
+  /* 글자색 #222 */
+  color: #222;
+  /* 밑줄없앰 */
+  text-decoration: none;
+}
+.news-box a:hover{
+  /* 글자크기 */
+  font-size: 18px;
+  /* 글자색 */
+  color: lightseagreen;
+  /* 밑줄없앰 */
+  text-decoration: underline;
+  /* 글자 그림자 */
+  text-shadow: 1px 1px 1px #282828ba;
+}
