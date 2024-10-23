@@ -526,6 +526,15 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
     - 이미지는 content 속성값으로 url() 사용!
 */
 
+/* 
+  주요뉴스의 li 순서에서 개별 선택하기!
+  글자색 변경하기!
+
+  [ 같은 종류의 형제요소 선택법 ]
+  :first-child -> 첫번째 자식
+  :last-child -> 마지막째 자식
+  :nth-child(n) -> n번째 자식
+*/
 .main-news li:first-child a {
   color: red;
 }
@@ -541,7 +550,9 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
   font-family: "Do Hyeon", cursive;
   font-size: 30px;
   border: 4px dashed lightblue;
-  /*  */
+  /* 내용만큼 가로크기 되도록
+    display변경 inline-block
+    -> dib */
   display: inline-block;
   /* 원형 둥근 모서리 */
   border-radius: 50%;
