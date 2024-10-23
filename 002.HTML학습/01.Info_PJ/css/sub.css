@@ -586,7 +586,7 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
   -> 형제선택자 + 사용함 : dd+dt
 */
 .sec-news dd + dt {
-  margin-top: 40px;
+  margin-top: 20px;
 }
 /* 
   [ 여러종류의 태그에서 순서별 선택법 ]
@@ -594,3 +594,71 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
    :last-of-type 같은 종류 중 마지막째 요소
    :nth-of-type 같은 종류 중 n번째 요소
 */
+
+.photo-news h3 {
+  font-family: "Do Hyeon", sans-serif;
+  text-align: center;
+  background: linear-gradient(to right, #fff, #ccc, #fff);
+}
+.photo-news h3::before {
+  content: "📷";
+  margin-right: 20px;
+}
+.photo-news h3::after {
+  content: "📸";
+  margin-left: 20px;
+}
+
+.photo-news table {
+  max-width: 500px;
+
+  /* 테이블 기본 간격 없앰(정확한 수치화를 위해) */
+  /*  */
+  border-collapse: collapse;
+  /*  */
+  border: 2px solid #ccc;
+  /* 테이블 중앙정렬 - 마영오! */
+  margin: 0 auto;
+}
+
+/* 첫번째 td : 숫자데이터 부분 */
+.photo-news td:first-child {
+  /* 가로크기 : w */
+  width: 50px;
+  /* 세로크기 : h */
+  height: 84px;
+  /* 글자 중앙 정렬 : tac */
+  text-align: center;
+  /* 배경색 설정 : bgc */
+  background-color: #ccc;
+}
+
+.photo-news td:nth-child(2){
+    /* 배경색 설정 : bgc */
+  background-color: #e4e4e4;
+  /* 양쪽패딩 : p */
+  padding: 0 50px;
+}
+
+.photo-news td:last-child{
+    /* 배경색 설정 : bgc */
+  background-color: #e4e4e4;
+}
+
+/* 사진뉴스 a요소 셋팅 */
+.photo-news table a {
+  /* 줄바꿈방지 설정 해제 : whn
+  -> 줄바꿈방지 설정일 경우 테이블에서 */
+  white-space: normal;
+}
+/* 사진뉴스 이미지 */
+.photo-news img {
+  width: 100px;
+  height: 70px;
+  vertical-align: middle;
+}
+
+/* 사이 구분선 넣기 : 두번째 tr부터 */
+.photo-news tr+tr td{
+  border-top: 2px solid #ccc;
+}
