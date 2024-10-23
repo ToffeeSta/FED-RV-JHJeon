@@ -556,26 +556,37 @@ small 태그에 적용되어 있어서 여기에 재정의해야함! */
   display: inline-block;
   /* 원형 둥근 모서리 */
   border-radius: 50%;
+  /* margin-top: 30px; */
 }
 
 /* dt 따로 순서별 디자인 설정 */
 /* 경제파트 */
-.sec-news dt:first-of-type{
+.sec-news dt:first-of-type {
   color: red;
   background: lightgreen;
   border-color: yellowgreen;
+  /* margin-top: 0; */
 }
 /* 사회파트 */
-.sec-news dt:nth-of-type(2){
+.sec-news dt:nth-of-type(2) {
   color: blue;
   background: lightcoral;
   border-color: magenta;
 }
 /* TV/연예파트 */
-.sec-news dt:last-of-type{
+.sec-news dt:last-of-type {
   color: green;
   background: goldenrod;
   border-color: gold;
+}
+
+/* 
+  두번째 dt부터 마진탑 주기 
+  -> dt앞에 dd가 있는 모든 dt를 선택함!
+  -> 형제선택자 + 사용함 : dd+dt
+*/
+.sec-news dd + dt {
+  margin-top: 40px;
 }
 /* 
   [ 여러종류의 태그에서 순서별 선택법 ]
