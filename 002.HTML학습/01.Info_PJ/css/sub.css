@@ -165,6 +165,7 @@ figcaption은 블록요소다! */
 .article-picture figcaption {
   /* 글자가운데정렬 tac */
   text-align: center;
+  color: rgb(154, 154, 154);
 }
 /*  하위요소에 지정된 속성은 그 요소에서 
 재정의 해야 적용됨! 예컨데 글자크기가 이미
