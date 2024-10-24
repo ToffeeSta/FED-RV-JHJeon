@@ -106,7 +106,8 @@
   /* width: 1280px; */
 
   /* 최대 가로 크기 설정 maw */
-  max-width: 700px;
+  max-width: 1000px;
+  min-width: 500px;
 
   /* 마영오로 박스 중앙정렬 */
   margin: 0 auto;
