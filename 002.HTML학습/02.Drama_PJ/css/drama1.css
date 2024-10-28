@@ -32,6 +32,8 @@ h2.tit {
   /* 두꺼운 글자 해제 : fwn */
   font-weight: normal;
   font-size: 17px;
+  /* 하단 마진 */
+  margin-bottom: 10px;
 }
 
 /* ul의 li를 옆으로 흐르게 하기 */
@@ -77,4 +79,65 @@ table.drama {
 .drama img {
   /* 가로크기 설정하면 높이값은 자동으로 설정! */
   width: 75px;
+}
+
+/* 추가정보 파트 */
+.info-txt {
+  color: #939396;
+}
+
+.num-txt {
+  color: red;
+}
+
+/* 숫자 부분(데이터DB에서 숫자 넣는 구분요소) */
+.num-txt em {
+  font-style: normal;
+}
+
+/* 글자 정보 링크 */
+.drama ol a {
+  /* a요소 기본 셋팅 변경 : 글자색, 밑줄 */
+  color: blue;
+  text-decoration: none;
+}
+
+.drama ol a:hover {
+  text-decoration: underline;
+}
+
+.drama .subscribe {
+  display: inline-block;
+  /* display 변경 이유: ㅁ마진탑 적용과 패딩을 실제로 위아래쪽 밀기 위해 */
+  margin-top: 10px;
+  padding: 5px;
+
+  color: #000;
+  border: 1.5px solid #ccc;
+  border-radius: 5px;
+  text-decoration: none;
+  font-size: 16px;
+}
+
+.drama .subscribe:hover {
+  text-decoration: none;
+}
+
+.subscribe b {
+  color: #5f5f5f;
+  padding-right: 5px;
+  font-size: 12px;
+  font-weight: normal;
+}
+
+.subscribe span {
+  color: lightgreen;
+  font-weight: bold;
+  padding: 5px;
+}
+.subscribe i {
+  font-style: normal;
+  border-left: 1px solid #ccc;
+  color: red;
+  padding-left: 5px;
 }
