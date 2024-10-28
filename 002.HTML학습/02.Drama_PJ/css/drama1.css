@@ -22,15 +22,16 @@ ol {
 
 /* 전체 제목 */
 h1.tit {
-    text-align: center;
-    /* 패딩 */
-    padding: 20px;
+  text-align: center;
+  /* 패딩 */
+  padding: 20px;
 }
 
 /* 드라마 제목 */
-h2.tit{
-    /* 두꺼운 글자 해제 : fwn */
-    font-weight: normal;
+h2.tit {
+  /* 두꺼운 글자 해제 : fwn */
+  font-weight: normal;
+  font-size: 17px;
 }
 
 /* ul의 li를 옆으로 흐르게 하기 */
@@ -39,6 +40,8 @@ h2.tit{
   /* 블록플롯 셋팅 */
   float: left;
   /* 나는 왼쪽에 너는 오른쪽으로 올라와서 흘러가! */
+  /* 패딩 */
+  padding: 9px;
 }
 
 /* 자식 플롯 때문에 부모가 망가지는걸 막아주는 가상요소 클리어 장치 */
@@ -58,13 +61,20 @@ table.drama {
   margin: 0 auto;
   /* 페딩 */
   padding: 15px;
+}
+
+/* 드라마별 묶음 요소 .drama > ul */
+.drama ul {
   /* 보더 */
   border: 1px solid #ccc;
   /* 보더 둥근 모서리 */
   border-radius: 10px;
+  /* 전체 글자 */
+  font-size: 15px;
 }
+
 /* 드라마 이미지 속성 조정 */
 .drama img {
-    /* 가로크기 설정하면 높이값은 자동으로 설정! */
+  /* 가로크기 설정하면 높이값은 자동으로 설정! */
   width: 75px;
 }
