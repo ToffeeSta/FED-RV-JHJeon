@@ -113,7 +113,7 @@ table.drama {
   padding: 5px;
 
   color: #000;
-  border: 1.5px solid #ccc;
+  border: 1px solid #ccc;
   border-radius: 5px;
   text-decoration: none;
   font-size: 16px;
@@ -140,4 +140,8 @@ table.drama {
   border-left: 1px solid #ccc;
   color: red;
   padding-left: 5px;
+}
+
+.drama li a img{
+    border-radius: 10px;
 }
