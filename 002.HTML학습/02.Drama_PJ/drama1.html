@@ -7,10 +7,18 @@
       content="width=device-width, initial-scale=1.0"
     />
     <title>2024.10 방영 중 드라마</title>
+    <!-- 외부 CSS 불러오기
+         link : 연결 속성
+         rel(relavant) : 링크연결 관련 속성
+        href(hyper text reference) : 링크 연결 주소
+     -->
+    <link rel="stylesheet" href="./css/drama1.css" />
   </head>
   <body>
+    <!-- 제목 -->
+     <h1 class="tit">K 드라마 리스트</h1>
     <!-- 드라마 테이블 -->
-    <table>
+    <table class="drama">
       <!-- 첫번째 줄 -->
       <tr>
         <!-- 첫번째 td -->
@@ -19,7 +27,9 @@
             <!-- 드라마 정보 파트 -->
             <li>
               <ol>
-                <li>조립식 가족</li>
+                <h2 class="tit">
+                    <li>조립식 가족</li>
+                </h2>
                 <li>JTBC (수) 오후 08:50</li>
                 <li>2.6% 닐슨코리아 (10.23.)</li>
                 <li>구독 2,850</li>
@@ -40,48 +50,24 @@
             <!-- 드라마 정보 파트 -->
             <li>
               <ol>
-                <li>좋거나 나쁜 동재</li>
+                <h2 class="tit">
+                    <li>좋거나 나쁜 동재</li>
+                </h2>
                 <li>tvN (월, 화) 오후 09:00</li>
                 <li>2.3% 닐슨코리아 (10.22.)</li>
                 <li>구독 84,907</li>
               </ol>
             </li>
             <!-- 드라마 이미지 -->
-            <li><img src="./images/d2.jpg" alt="좋거나 나쁜 동재 포스터"></li>
+            <li>
+              <img
+                src="./images/d2.jpg"
+                alt="좋거나 나쁜 동재 포스터"
+              />
+            </li>
           </ul>
         </td>
-        <!-- 세번째 td -->
-        <td>
-            <ul>
-              <!-- 드라마 정보 파트 -->
-              <li>
-                <ol>
-                  <li>지옥에서 온 판사</li>
-                  <li>SBS (금, 토) 오후 10:00</li>
-                  <li>11.7% 닐슨코리아 (10.26.)</li>
-                  <li>구독 8,922</li>
-                </ol>
-              </li>
-              <!-- 드라마 이미지 -->
-              <li><img src="./images/d3.jpg" alt="지옥에서 온 판사 포스터"></li>
-            </ul>
-          </td>
-          <!-- 네번째 td -->
-        <td>
-            <ul>
-              <!-- 드라마 정보 파트 -->
-              <li>
-                <ol>
-                  <li>정년이</li>
-                  <li>tvN (토, 일) 오후 09:20</li>
-                  <li>13.4% 닐슨코리아 (10.27.)</li>
-                  <li>구독 6,888</li>
-                </ol>
-              </li>
-              <!-- 드라마 이미지 -->
-              <li><img src="./images/d4.jpg" alt="정년이 포스터"></li>
-            </ul>
-          </td>
+        <!-- 이 밑으로 -->
       </tr>
     </table>
   </body>
