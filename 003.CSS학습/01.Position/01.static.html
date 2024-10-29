@@ -1,31 +1,31 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
+<head>
+    <meta charset="UTF-8">
     <title>01. static 포지션</title>
     <style>
-      .bx {
-        width: 300px;
-        height: 300px;
-        border: 2px solid blue;
-        text-align: center;
-        font-size: 24px;
-        font-weight: bold; /* fwb */
-        /* 글자세로중앙 */
-        line-height: 300px;
-      }
+        .bx{
+            width: 300px;
+            height: 300px;
+            border: 2px solid blue;
+            text-align: center;
+            font-size: 24px;
+            font-weight: bold;/* fwb */
+            /* 글자세로중앙 */
+            line-height: 300px;
+        }
 
-      /* 첫번째 박스에 포지션 체크 */
-      #s1 {
-        position: static;
+        /* 첫번째 박스에 포지션 체크 */
+        #s1{
+            position: static;
 
-        /* 위치 이동속성 적용안됨! */
-        top: 100px;
-        left: 100px;
+            /* 위치 이동속성 적용안됨! */
+            top: 100px;
+            left: 100px;
 
-        margin-top: 50px;
-        margin-left: 50px;
-        /* 
+            margin-top: 50px;
+            margin-left: 50px;
+            /* 
                 [ CSS 포지션이 뭐지? ]
                 - 위치를 효과적으로 배치하기 위한
                 코딩법을 제공하는 속성
@@ -45,42 +45,48 @@
                 - 종류 : 4가지
                     top, bottom, left, right
             */
+           
 
-        background-color: lightgreen;
-        
-      }
-      #s2 {
-        background-color: lightcoral;
-      }
-      #s3 {
-        background-color: lightblue;
-      }
+
+            background-color: lightgreen;
+        }
+        #s2{
+            background-color: lightcoral;
+        }
+        #s3{
+            background-color: lightblue;
+        }
+
     </style>
-  </head>
-  <body>
+</head>
+<body>
     <div class="bx" id="s1">s1</div>
     <div class="bx" id="s2">s2</div>
     <div class="bx" id="s3">s3</div>
-    <!--
-     .bx#s${s$}*3
+    <!-- 
+    [ 젠코딩(에밋코딩) ]
 
-     ______________
+    .bx#s${s$}*3 
+    ___________________
 
-     . : 클래스
-     # : 아이디
-     $ : 증가숫자자리
-     *숫자 : 반복 생성 횟수
-     {} : 데이터 출력 (꺽쇠사이값)
-     [] : 솟성 셋팅값
-     > : 하위직계 자식 요소
-     + : 형제 요소
-     () : 요소 구분하기
-     ____________________________
-     header.my#key[title=hi]{메뉴}*2
-     
-      ul>li*3>a*4
- 
-      div.my$*2>section+article>img
+    . : 클래스
+    # : 아이디
+    $ : 증가숫자자리
+    *숫자 : 반복생성횟수
+    {} : 데이터출력(꺽쇠사이값)
+    [] : 속성셋팅값
+    > : 하위직계 자식요소
+    + : 형제요소
+    () : 요소 구분하기     
+    ______________________
+    ((샘플))
+    header.my#key[title=hi]{메뉴}*2
+
+    ul>li*3>a*4
+
+    div.my#my$*2>section+article>img
     -->
-  </body>
+   
+    
+</body>
 </html>
