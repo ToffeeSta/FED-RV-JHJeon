@@ -43,6 +43,7 @@ body * {
   top: 136px;
   left: 257px;
   /* 나의 부모는? .main-area */
+  width: 701px;
   height: 397px;
   background: red;
 }
