@@ -43,21 +43,35 @@ body {
   /* 나의 부모는? .head */
   width: 50px;
   height: 50px;
+  /* 배경 공통 */
   background-repeat: no-repeat;
   background-size: 100% 100%;
+  /* 원형 셋팅 */
+  border-radius: 50%;
 }
 /* 왼눈 */
 .eye1 {
+  /* 개별 위치값 */
   left: 50px;
+  /* BG 이미지만 변경 */
   background-image: url(../images/e1.jpg)
 }
 /* 오른눈 */
 .eye2 {
+  /* 개별 위치값 */
   right: 50px;
+  /* BG 이미지만 변경 */
   background-image: url(../images/e2.jpg)
+
 }
 /* 코 */
+.nose{
+
+}
 /* 입 */
+.mouth{
+  
+}
 
 /* 귀 공통 */
 .ear{
@@ -70,7 +84,7 @@ body {
 }
 /* 오른귀 */
 .ear2{
-  
+
 }
 
 /* 2-1-2. 로봇 몸통 */
