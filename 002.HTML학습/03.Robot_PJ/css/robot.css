@@ -34,6 +34,17 @@ body {
   /* margin-top: 250px; */
   width: 250px;
   height: 250px;
+  
+
+}
+
+/****************** 공통클래스 ******************/
+/* 메탈 배경 클래스 */
+.metal1{
+  background: url(../images/metal01.jpg) no-repeat center/cover;
+}
+.metal2{
+  background: url(../images/metal02.jpg) no-repeat center/cover;
 }
 
 /* 눈 공통 */
@@ -70,7 +81,7 @@ body {
 }
 /* 입 */
 .mouth{
-  
+
 }
 
 /* 귀 공통 */
