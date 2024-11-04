@@ -3,6 +3,7 @@
 
 /* 외부css 불러오기 */
 @import url(./reset.css);
+@import url(./core.css);
 
 body {
   background-color: #000;
@@ -12,11 +13,6 @@ body {
 body * {
   /* 아웃라인은 아무런 영향이 없음 */
   outline: 2px dashed #ccc;
-}
-
-.part {
-  width: 1200px;
-  margin: 0 auto;
 }
 
 /**************************** 1. 상단영역 ****************************/
@@ -45,7 +41,7 @@ body * {
   /* 나의 부모는? .main-area */
   width: 701px;
   height: 397px;
-  background: red;
+  background: black;
 }
 /* 스크린 아이프레임 */
 .screen iframe#ifr {
@@ -67,14 +63,52 @@ body * {
   height: 170px;
 }
 /* 메뉴리스트 li */
-.poster-menu li{
-    /* 블록 옆으로 흐르기 */
-    float: left;
+.poster-menu ul > li {
+  /* 부모자격( .mv-info ) */
+  position: relative;
+  /* 블록 옆으로 흐르기 */
+  float: left;
+  /* 넘치는 요소 숨기기 */
+  overflow: hidden;
 }
-.poster-menu li+li{
-    /* 왼쪽 마진 */
-    margin-left: 10px;
+.poster-menu ul > li + li {
+  /* 왼쪽 마진 */
+  margin-left: 10px;
 }
+
+/* 영화 정보 박스 */
+.mv-info {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  /* 부모 : .poster-menu ul>li */
+
+  width: 100%;
+  height: 100%;
+  text-align: center;
+  font-size: 16px;
+  line-height: 2;
+  background-color: rgb(0, 0, 0, 70%);
+  padding-top: 20px;
+  box-sizing: border-box;
+  font-family: "cute font";
+  color: lightcyan;
+
+  transition: .3s ease-out;
+
+}
+
+/* 상위 ul>li에 오버시 보이기 */
+.poster-menu ul>li:hover .mv-info{
+  top: 0;
+}
+
+.mv-info ol li:first-child{
+  font-size: 20px;
+  font-weight: bold;
+  color: aqua;
+}
+
 /**************************** 3. 하단영역 ****************************/
 .footer-area {
   height: 100px;
