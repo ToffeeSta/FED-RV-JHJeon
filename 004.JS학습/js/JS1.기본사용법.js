@@ -25,9 +25,13 @@ function 김비서나와라() {
   // 하나뿐이어도 0번째라고 해야함!
   console.log(
     "클래스 선택 HTML 컬렉션 객체",
-    document.getElementsByClassName("pbox"),
+    document.getElementsByClassName(
+      "pbox"
+    ),
     "요소선택 HTML 컬랙션 객체",
-    document.getElementsByTagName("span"),
+    document.getElementsByTagName(
+      "span"
+    ),
     "아이디 선택 HTML 요소 객체",
     document.getElementById("name")
   );
@@ -152,7 +156,88 @@ function 김비서나와라() {
 
 
   ******************************************/
-
 } //////////// 김비서나와라 함수 //////////
 
+/**************************************** 
+함수명: 맘대로 해라
+기능: 선택 요소의 style과 html을 변경함
+****************************************/
 
+function 맘대로해라(헐, 헉스) {
+  // 1. 함수 호출 확인
+  console.log(
+    "맘대로 하세요~!",
+    헐,
+    헉스
+  );
+
+  // 2. 대상 선정
+  // 해당 요소의 순번은 헐 변수에 들어있음
+  var 아파트 =
+    document.querySelectorAll(
+      ".박스야 .원이야"
+    )[헐];
+  /**************************************
+   [ JS DOM의 특별한 선택 메서드 2가지 ] 
+   1. querySelector(CSS선택자) - 하나만 선택
+   2. querySelectorAll(CSS선택자) - 여러개 선택
+   -> 2번 방식은 HTMLCollection 객체로 반환 한다!
+   -> 따라서 length와 item(순번)/[순번]을 사용함
+   **************************************/
+
+  // var 아파트 = document.getElementsByClassName("박스야").item(0).getElementsByClassName("원이야").item(헐);
+
+  console.log("대상요소: ", 아파트);
+
+  // 3. 변경내용: 트랜지션으로 화면 왼쪽 하단으로 이동하며
+  // 박스에 유튜브 비디오가 나오도록 한다!
+
+  // 3-1. 트랜지션 설정
+  아파트.style.transition =
+    "all 1s ease-out, right .5s 1s";
+  // 3-2. 위치이동
+  아파트.style.top =
+    "calc(100% - 200px)";
+  아파트.style.right =
+    "calc(100% - 200px*" +
+    (헐 + 1) +
+    ")";
+
+  // 3-3. 유튜브 동영상 넣기
+  아파트.innerHTML = `<iframe id="my-apt" src="https://www.youtube.com/embed/BfBjNogKZ-E?autoplay=1" allow="autoplay";></iframe>`;
+  // 3-4. 아이프레임 디자인 넣기
+  var 뮤비 =
+    document.querySelectorAll(
+      "#my-apt"
+    );
+  // cssText 속성 : 한꺼번에 문자열로 css를 넣을 때 사용
+  // 주의 : 따로 속성 셋팅할 때와 달리 다른 인라인 속성을 덮어써서 지워버리니까 조심하라!
+  // 뮤비.style.cssText = `
+  //   position: absolute;
+  //   border: none;
+  //   width: 100%;
+  //   height: 100%;
+  //   border-radius: 50%;
+  //   `;
+
+  뮤비.forEach((element) => {
+    element.style.cssText = `
+    position: absolute;
+    border: none;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+  `;
+  });
+
+  // 3-5. class 추가/제거
+
+  아파트.classList.remove("on");
+
+  // 자바스크립트를 쉽게 쓰는 한가지 방법!
+  // 바로 클래스 넣기/빼기!!!
+  // 클래스 제어 객체 : classList
+  // (1) add(클래스명) : 클래스 추가
+  // (2) remove(클래스명) : 클래스 제거
+  // (3) toggle(클래스명) : 클래스 추가/제거
+} /////////////맘대로해라 함수///////////////
