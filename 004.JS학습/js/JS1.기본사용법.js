@@ -204,31 +204,20 @@ function 맘대로해라(헐, 헉스) {
     ")";
 
   // 3-3. 유튜브 동영상 넣기
-  아파트.innerHTML = `<iframe id="my-apt" src="https://www.youtube.com/embed/BfBjNogKZ-E?autoplay=1" allow="autoplay";></iframe>`;
+  아파트.innerHTML = `<iframe src="https://www.youtube.com/embed/BfBjNogKZ-E?autoplay=1" allow="autoplay";></iframe>`;
   // 3-4. 아이프레임 디자인 넣기
   var 뮤비 =
-    document.querySelectorAll(
-      "#my-apt"
-    );
+    아파트.querySelector("iframe");
+
   // cssText 속성 : 한꺼번에 문자열로 css를 넣을 때 사용
   // 주의 : 따로 속성 셋팅할 때와 달리 다른 인라인 속성을 덮어써서 지워버리니까 조심하라!
-  // 뮤비.style.cssText = `
-  //   position: absolute;
-  //   border: none;
-  //   width: 100%;
-  //   height: 100%;
-  //   border-radius: 50%;
-  //   `;
-
-  뮤비.forEach((element) => {
-    element.style.cssText = `
+  뮤비.style.cssText = `
     position: absolute;
     border: none;
     width: 100%;
     height: 100%;
     border-radius: 50%;
-  `;
-  });
+    `;
 
   // 3-5. class 추가/제거
 
@@ -241,3 +230,44 @@ function 맘대로해라(헐, 헉스) {
   // (2) remove(클래스명) : 클래스 제거
   // (3) toggle(클래스명) : 클래스 추가/제거
 } /////////////맘대로해라 함수///////////////
+
+/************************************************ 
+함수명: 사각사각
+기능: 전체가 사각형으로 화면을 채우며 애니메이션됨!
+************************************************/
+
+function 사각사각() {
+  // 1. 함수 호출 확인
+  console.log("사각사각!");
+
+  // 2. 대상 선정 : .넌뭐냐
+  var 나야나 =
+    document.querySelector(".넌뭐냐");
+  console.log("대상요소: ", 나야나);
+
+  // 3. 변경내용 : top, 트랜지션, width, height 값 변경
+  나야나.style.top = "0";
+  나야나.style.borderRadius = "0";
+  나야나.style.width = "100%";
+  나야나.style.height = "100%";
+  나야나.style.transition =
+    "3s 1s, top 1s 0s";
+    // top값부터 1초간 작동 나머지는 1초 후 작동 
+  나야나.style.zIndex = "100"; 
+  // 4. 추가변경 : 글자넣기
+  //innerText = 글자내용
+  나야나.innerText = "JS입문을 환영합니다!";
+
+  // 5. 글자 관련 CSS 넣기!
+  나야나.style.fontSize = "70px";
+  나야나.style.color = "aqua";
+  나야나.style.fontWeight = "bold";
+  나야나.style.textShadow = "5px 5px 3px #000";
+  나야나.style.lineHeight = window.innerHeight+"px";
+  // window.innerHeight는 현재 윈도우창 높이값 리턴
+
+  // 화면 높이값 콘솔 출력
+  console.log("window.innerHeight: ", window.innerHeight);
+
+  
+} //////////////사각사각 함수 //////////////
