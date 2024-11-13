@@ -11,11 +11,12 @@
       case문, for문, while문
     </title>
     <!-- JS코드구역 -->
-    <!-- <script>
-      // JS 인터널 코딩구역
-    </script> -->
-    <!-- 외부 JS 불러오기 -->
+    <script>
+      //  JS 인터널 코딩구역
+    </script>
+    <!-- 외부 JS 불러오기 : 익스터널방식 -->
     <script src="./js/JS3-1.제어문.js"></script>
+
     <!-- CSS코드구역 -->
     <style>
       h1 {
@@ -126,10 +127,31 @@
         type="text"
         id="jumsu"
         placeholder="점수를 입력하세요!"
-        maxlength="3" 
-        value="나야나!"
+        maxlength="3"
+        onkeypress="if(event.keyCode == 13){
+          showJumsu();
+        }
+        //키코드 확인하기
+        console.log('키코드:',event.keyCode,event.key);
+        console.log('키코드명:',event.key);
+        "
       />
+<!-- 
+        [ onkeypress 이벤트 속성 ]
+        -> 키보드를 치면 발생하는 이벤트 속성
+        if조건문
+        조건식 : event.keyCode === 13
+        -> 키보드의 키코드가 13번이냐? 엔터키 눌렀냐?
+        -> 엔터키의 키코드는 13번이다!
+        -> true이면 showJumsu() 라는 함수를 호출해라!
+        -> event 브라우저 내장객체 : 이벤트관련 객체
+        -> event.keyCode는 키코드
+        -> event.key는 키이름
 
+        참고) 키코드 참조: 아스키코드 
+        (리턴키는 carriage return)
+        https://www.w3schools.com/charsets/ref_html_ascii.asp
+       -->
       <!-- 
             [ label요소 ]
             input요소의 설명라벨요소

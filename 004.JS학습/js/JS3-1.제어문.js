@@ -32,11 +32,56 @@ function showJumsu() {
   var score = jumsu.value;
 
   // 4. 점수에 따른 분기하여 결과 출력 //////
-  if (score >= "90") {
-    console.log("90점 이상");
-  } else {
-    console.log("90점 미만");
+
+  ////// ### 결과 담는 변수 셋팅 ### //////
+  // (1) 평가 텍스트 변수
+  var expText = "";
+  // (2) 평가 결과 글자색 변수
+  var expColor = "";
+  // (3) 칭찬 스티커 위치값 변수
+  var jshowPos = "";
+  // 4-1. 90점 이상 : 매우잘함
+
+  if (score >= 90) {
+    expText = "매우잘함";
+    expColor = "green";
+    jshowPos = "100% 50%";
   }
+  // 4-2. 80점 이상 : 잘함
+  else if (score >= 80) {
+    expText = "잘함";
+    expColor = "blue";
+    jshowPos = "0% 100%";
+  }
+  // 4-3. 70점 이상 : 보통
+  else if (score >= 70) {
+    expText = "보통";
+    expColor = "purple";
+    jshowPos = "50% 50%";
+  }
+  // 4-4. 60점 이상 : 노력요함
+  else if (score >= 60) {
+    expText = "노력요함";
+    expColor = "orange";
+    jshowPos = "100% 100%";
+  }
+  // 4-5. 60점 미만 : 재시험
+  else {
+    expText = "재시험";
+    expColor = "red";
+    jshowPos = "100% 0%";
+  }
+
+  // 5. 화면 출력 변경하기 /////
+  // 5-1. 텍스트 변경하기
+  jexp.innerText =
+    "평과 결과 : " + expText;
+
+  // 5-2. 글자색 변경하기
+  jexp.style.color = expColor;
+
+  // 5-3. 칭찬 스티커 변경하기
+  jshow.style.backgroundPosition = jshowPos;
 
   console.log(
     "선택요소: ",
@@ -45,7 +90,6 @@ function showJumsu() {
     jshow,
     score
   );
-
 } /////////showJumsu함수///////////
 /*************************************** 
        [ if문 ]
