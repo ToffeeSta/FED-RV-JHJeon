@@ -2,12 +2,14 @@
 
 @import url(./reset.css);
 
-#top-area{
-    height: 72px;
-    width: 100%;
-    border: 1px solid #ccc;
-
+#top-area {
+  /* height: 72px; */
+  width: 100%;
+  border: 1px solid #ccc;
 }
-#neviMenu{
-
+.site-logo {
+  font-size: 30px;
+}
+#neviMenu {
+  display: block;
 }
