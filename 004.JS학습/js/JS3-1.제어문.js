@@ -14,7 +14,7 @@ console.log("나. 제어문 테스트");
 // 이름있는 함수를 선언적 함수라고 함!
 function showJumsu() {
   // 1. 함수 호출 확인
-  console.log("내 평가를 알려줘!");
+  // console.log("내 평가를 알려줘!");
 
   // 2. 대상 선정/////
   // 2-1. 점수 입력 요소 : input#jumsu
@@ -30,6 +30,84 @@ function showJumsu() {
 
   // 3.점수 입력값 읽어오기 : jumsu변수의 input 요소값
   var score = jumsu.value;
+
+  /********************************************* 
+    [ if문을 이용하여 데이터 필터링 하기! ]
+    (1) 문자면 돌려보내기
+    (2) 숫자 범위가 아니면 돌려보내기
+    (3) 빈값이면 돌려보내기
+    -> 공통 : 메시지 찍기 + 초기화
+  *********************************************/
+  // 3.5-1. 문자인 경우
+  // 숫자가 아니니? is not a number?
+  // JS 내장 함수 isNaN(보낼값)
+  // 숫자가 아니면 true 숫자면 false
+  if (isNaN(score)) {
+    console.log("숫자가 아님");
+
+    //초기화 하기
+    // (1) 텍스트 변경하기
+    jexp.innerText =
+      "숫자만 입력하세요";
+
+    // (2) 글자색 변경하기
+    jexp.style.color = "black";
+
+    // (3) 칭찬 스티커 Position 변경하기
+    jshow.style.backgroundPosition =
+      "-50% 0%";
+
+    // (4) 입력값 지우고 포커스 보내기
+    jumsu.value = "";
+    jumsu.focus();
+
+    return;
+  } ///////if (isNaN(score))//////
+  // 3.5-2. 범위 값 이외인 경우
+  else if (0 > score || score > 100) {
+    console.log("입력 범위 밖");
+
+    //초기화 하기
+    // (1) 텍스트 변경하기
+    jexp.innerText =
+      "0~100 범위로 입력하세요";
+
+    // (2) 글자색 변경하기
+    jexp.style.color = "black";
+
+    // (3) 칭찬 스티커 Position 변경하기
+    jshow.style.backgroundPosition =
+      "-50% 0%";
+
+    // (4) 입력값 지우고 포커스 보내기
+    jumsu.value = "";
+    jumsu.focus();
+    return;
+  } //////else if (0 > score || score > 100)//////
+
+
+  // 3.5-2. 빈값인 경우
+  // 공백문자열 제거 내장함수? trim()
+  else if (score.trim() == "") {
+    console.log("입력이 없음");
+
+    //초기화 하기
+    // (1) 텍스트 변경하기
+    jexp.innerText =
+      "값을 입력해주세요";
+
+    // (2) 글자색 변경하기
+    jexp.style.color = "black";
+
+    // (3) 칭찬 스티커 Position 변경하기
+    jshow.style.backgroundPosition =
+      "-50% 0%";
+
+    // (4) 입력값 지우고 포커스 보내기
+    jumsu.value = "";
+    jumsu.focus();
+    return;
+  } //////else if (score.trim() == "")//////
 
   // 4. 점수에 따른 분기하여 결과 출력 //////
 
@@ -81,15 +159,16 @@ function showJumsu() {
   jexp.style.color = expColor;
 
   // 5-3. 칭찬 스티커 변경하기
-  jshow.style.backgroundPosition = jshowPos;
+  jshow.style.backgroundPosition =
+    jshowPos;
 
-  console.log(
-    "선택요소: ",
-    jumsu,
-    jexp,
-    jshow,
-    score
-  );
+  // console.log(
+  //   "선택요소: ",
+  //   jumsu,
+  //   jexp,
+  //   jshow,
+  //   score
+  // );
 } /////////showJumsu함수///////////
 /*************************************** 
        [ if문 ]
@@ -138,3 +217,73 @@ function showJumsu() {
 
             if(aa>10) my = "ㅎㅎㅎ";
        ***************************************/
+
+// if문 튜닝
+if (true) {
+  console.log("조건통과 1");
+}
+if (false) {
+  console.log("조건통과 2");
+} else {
+  console.log("불통과");
+}
+
+// 변수를 사용한 불린 값 체크
+var condition;
+console.log(
+  "할당 안된 변수값",
+  condition
+);
+//if문 처리 결과 찍기 함수///////////
+var showResult = function (txt) {
+  // txt - 전달변수
+  // 호출 확인 + 검사종류 타이틀 찍기
+  console.log("❤️" + txt + "❤️");
+  // if문 테스트하기
+  if (condition) {
+    console.log(condition, "if문 통과");
+  } else {
+    console.log(
+      condition,
+      ": false 처리"
+    );
+  }
+}; ///////////showResult 함수/////////////
+
+// 테스트 1 : undefined
+// 선언 후 할당되지 않은 변수값은 undefined임!
+showResult("테스트 1 : undefined");
+
+// 테스트 2 : 숫자
+// -> 0은 false, 이외의 숫자는 true
+// true는 1, false는 0과 1:1매칭됨
+condition = 1;
+showResult("테스트 2 : 숫자");
+condition = 0;
+showResult("테스트 2 : 숫자");
+condition = -2313;
+showResult("테스트 2 : 숫자");
+
+// 테스트 3 : null
+// -> null은 '빈값'을 의미한다
+condition = null;
+showResult("테스트 3 : null");
+
+// 테스트 4 : 비교연산자
+// -> 비교 연산자는 결과로 true / false를 리턴
+condition = 34 < 1;
+showResult(
+  "테스트 4 : 비교연산자 (34 < 1)"
+);
+condition = 34 > 1;
+showResult(
+  "테스트 4 : 비교연산자 (34 > 1)"
+);
+
+// 테스트 5 : 선언된 적이 없는 변수
+// -> 아예 에러 발생
+// condition = mymymy;
+// showResult("테스트 5 : 선언된 적이 없는 변수");
+
+// 상단 콘솔 출력 지우기;
+console.clear();
