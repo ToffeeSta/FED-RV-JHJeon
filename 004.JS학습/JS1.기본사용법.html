@@ -404,15 +404,14 @@
   </head>
   <body>
     <!-- 드라마 소개박스 -->
-    <!-- 현재 DOM구조 : html>body>p.pbox>span#name -->
-    <!-- 이벤트속성 : on이벤트명="값"
+     <!-- 현재 DOM구조 : html>body>p.pbox>span#name -->
+      <!-- 이벤트속성 : on이벤트명="값"
        이벤트속성값 영역은 보통 문자열이 아니고
        JS코딩구역이다! -->
-
-    <p
-      class="pbox"
-      title="클릭하시면 김비서가 나옵니다~!"
-      onclick="
+       
+     <p class="pbox"
+     title="클릭하시면 김비서가 나옵니다~!"
+     onclick="
     //  alert('👩‍🦰ㅋㅋ');
     // 백틱(`)으로 감싸서 출력할 수 있다!
     // 이퀄(=)은 오른쪽 값을 왼쪽에 할당!
@@ -425,31 +424,23 @@
     김비서나와라();
      
      "
-    >
-      나는 요즘 매일 생각한다! <br />
+     >
+      나는 요즘 매일 생각한다! <br>
       도대체 <span id="name"></span>
-    </p>
+     </p>
 
-    <!-- 원모양 박스 -->
-    <div class="박스야">
-      <div
-        class="원이야 on"
-        onclick="맘대로해라(0,'로제')"
-      ></div>
-      <div
-        class="원이야 on"
-        onclick="맘대로해라(1,'브루노 마스')"
-      ></div>
-      <div
-        class="원이야 on"
-        onclick="맘대로해라(2,'아파트 밴드')"
-      ></div>
-    </div>
-    <!-- 사각형으로 변할 전체 마무리 원박스 -->
-    <div
-      class="넌뭐냐"
-      title="더블클릭해주세요!"
-      ondblclick="사각사각()"
-    ></div>
+     <!-- 원모양 박스 -->
+      <div class="박스야">
+          <div class="원이야 on" 
+          onclick="맘대로해라(0,'로제')"></div>
+          <div class="원이야 on" 
+          onclick="맘대로해라(1,'브루노 마스')"></div>
+          <div class="원이야 on" 
+          onclick="맘대로해라(2,'아파트 밴드')"></div>
+      </div>
+
+      <!-- 사각형으로 변할 전체 마무리 원박스 -->
+       <div class="넌뭐냐" title="더블클릭해주세요!" ondblclick="사각사각()"></div>
+     
   </body>
 </html>
