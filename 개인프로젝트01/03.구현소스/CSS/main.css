@@ -9,6 +9,8 @@
 }
 .site-logo {
   font-size: 30px;
+  font-style: bold;
+  color: #0c4da2;
 }
 #neviMenu {
   display: block;
