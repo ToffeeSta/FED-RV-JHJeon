@@ -46,7 +46,16 @@ let miniSpace = document.querySelector(
   ".mini-space"
 );
 
-// console.log("선택요소:", mini, mini.length + "개", miniSpace);
+// 1-3. 개수 출력요소 .stxt span
+let stxt = document.querySelector(
+  ".stxt span"
+);
+
+// 1-4. 리셋 버튼 .rbtn
+let rbtn =
+  document.querySelector(".rbtn");
+
+// console.log("선택요소:", mini, mini.length + "개", miniSpace, stxt, rbtn);
 
 // 2. 이벤트 속성 셋팅하기 ///////////////////////////
 // 이벤트 대상에게 click 이벤트와 함수를 연결한다
@@ -63,6 +72,8 @@ for (let i = 0; i < cnt; i++) {
 } // for문 //////////////////
 
 // 3. 함수 만들기 ///////////////////////////
+// 미니언즈 이미지 개수를 저장할 변술를 함수 구역 바깥에서 만들고 전역변수로 선언
+let miniCnt = 0;
 function insertMini() {
   // this -> 호출한 요소 자신!
   // 1. 호출한 요소의 개수 속성 읽어오기 : data-num
@@ -80,21 +91,38 @@ function insertMini() {
   // 예) document.querySelector('img').setAttribute("src", 경로)
 
   // 2. 함수 호출 확인
-  console.log(
-    "미니언즈 넣어봐바!",
-    miniNum
-  );
+  // console.log(
+  //   "미니언즈 넣어봐바!",
+  //   miniNum
+  // );
 
   // 3. 변경대상(miniSpace)요소에 이미지 넣기
   // += 대입 연산자 : 기존값에 새로운 값을 더함!
-
-//   let miniCnt = 0;
-  
   for (let i = 0; i < miniNum; i++) {
     miniSpace.innerHTML += `<img
                 src="./images/Minions.png"
                 alt="미니언즈"/>`;
-    // miniCnt++;
 
+    // miniCnt에 미니언즈 개수 증가하기
+    miniCnt++;
   } ///// for문 //////////////////
+
+  // 4. 미니언즈 개수 표시하기 //////////
+  // 대상 : .stxt span -> stxt
+  stxt.innerText = miniCnt * 3;
 } //////////// insertMini() ////////////
+
+// 4. 리셋 버튼 이벤트 구현///////
+// 이벤트 버튼: .rbtn -> rbtn 변수
+rbtn.onclick = function () {
+  // console.log("reset");
+
+  // 2. 리셋버튼을 클릭하면 파란박스의
+  // 미니언즈 이미지 모두가 삭제 된다.
+  miniSpace.innerHTML = "";
+
+  // 3. 이때 미니언즈 개수도 0으로 초기화한다.
+  miniCnt = 0;
+  stxt.innerText = miniCnt;
+
+}; ////// click 이벤트 함수 ////////////////
