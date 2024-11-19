@@ -36,12 +36,65 @@
 
 ***********************************************/
 
-
 // 1. 대상선정 ////////////////////////////////////
 // 1-1. 이벤트 대상 : .mini
-let mini = document.querySelectorAll(".mini");
+let mini =
+  document.querySelectorAll(".mini");
 
 // 1-2. 변경 대상 :.mini-space
-let miniSpace = document.querySelector(".mini-space");
+let miniSpace = document.querySelector(
+  ".mini-space"
+);
 
-console.log("선택요소:", mini, miniSpace);
+// console.log("선택요소:", mini, mini.length + "개", miniSpace);
+
+// 2. 이벤트 속성 셋팅하기 ///////////////////////////
+// 이벤트 대상에게 click 이벤트와 함수를 연결한다
+
+// 변수에 담긴 html컬렉션의 개수는? 변수.length
+// 개수만큼 for문을 돌아서 클릭 이벤트를 세팅한다!
+
+// mini.length miniCnt(count)변수에 담기
+const cnt = mini.length;
+
+for (let i = 0; i < cnt; i++) {
+  // mini.item(0).onclick = insertMini;
+  mini[i].onclick = insertMini;
+} // for문 //////////////////
+
+// 3. 함수 만들기 ///////////////////////////
+function insertMini() {
+  // this -> 호출한 요소 자신!
+  // 1. 호출한 요소의 개수 속성 읽어오기 : data-num
+  let miniNum =
+    this.getAttribute("data-num");
+
+  // 속성값 읽어오기 2가지
+  // 1) 속성요소.속성명
+  // 2) 속성요소.getAttribute(속성명)
+
+  // 속성값 셋팅법 2가지
+  // 1) 선택요소.속성명 = 값
+  // 예) document.querySelector('img').src = 경로
+  // 2) 선택요소.setAttribute(속성명, '값')
+  // 예) document.querySelector('img').setAttribute("src", 경로)
+
+  // 2. 함수 호출 확인
+  console.log(
+    "미니언즈 넣어봐바!",
+    miniNum
+  );
+
+  // 3. 변경대상(miniSpace)요소에 이미지 넣기
+  // += 대입 연산자 : 기존값에 새로운 값을 더함!
+
+//   let miniCnt = 0;
+  
+  for (let i = 0; i < miniNum; i++) {
+    miniSpace.innerHTML += `<img
+                src="./images/Minions.png"
+                alt="미니언즈"/>`;
+    // miniCnt++;
+
+  } ///// for문 //////////////////
+} //////////// insertMini() ////////////
