@@ -43,7 +43,48 @@ const arr1 = new Array(
     "리틀 포레스트",
     "정년이",
   ],
-  "김태리"
+  "김태리",
+  function () {
+    // this는 누구? 호출한 요소 자신
+    alert("김태리 멋짐!!!");
+    // 1. 호출한 요소 박스에 김태리 사진 이미지 넣기
+    this.innerHTML += `
+      <img src="https://cdn.iconsumer.or.kr/news/photo/202210/25071_29865_256.jpg" 
+        alt="김태리"   
+        style = "
+          position: absolute;
+          top: 0;
+          left: 0;
+          width: 250px; 
+          height: 300px; 
+        "
+        id="kim"
+      />`;
+
+    // 앱솔루트의 부모자격은  this에게 준다
+    this.style.position = "relative";
+    // 2. 마우스 오버 시, 나타남
+    this.onmouseenter = () => {
+      document.querySelector("#kim")
+       .style.display = "block";
+    };
+    // 3. 마우스 아웃시, 사라짐
+    this.onmouseleave = () => {
+      document.querySelector("#kim")
+       .style.display = "none";
+    };
+    // 4. 마우스 움직이면 따라다니게 하기
+    // mousemove 이벤트 : 마우스 포인터가 대상 요소 위에서 움직일 때 계속 발생
+    this.onmousemove= (헐) => {
+      // 헐 변수는 이벤트 전달 변수임!
+      // 어떤 함수도 전달 값이 없는데 변수 하나를 쓰면 
+      // 곧 그것이 이벤트 전달변수가 됨!
+      // 그 요소에서 발생하는 이벤트를 객체로 가지고 있음
+      // 대체해서 event라고 직접 전체 이벤트 객체를 쓸 수 있음
+      console.log("pageX:",헐.pageX);
+      console.log("pageY:",헐.pageY);
+    };
+  }
 );
 
 // new 키워드로 선언과 할당을 동시에 할 수 있다!
@@ -84,6 +125,10 @@ target[0].innerHTML = `
 // 배열안에 배열이 또 있으면 대괄호를 추가하여
 // 해당 순번을 써준다! 변수[순번][순번]
 
+// 김태리 기능 추가!
+// 함수 호출 : 배열 마지막 번호 == 배열개수 - 1
+target[0].onclick = arr1[arr1.length - 1];
+
 // 1-2. 배열 리터럴 방식의 선언과 할당
 // 배열변수명 = [값1, 값2,...]
 // new 키워드 없이 바로 쓸 수 있는 객체임!
@@ -95,6 +140,21 @@ const arr2 = [
   1919,
   function () {
     alert("대한독립만세~!");
+    // this는 누구인가? 호출한 요소 자신
+    console.log("this: ", this);
+    // this에 배경 넣기
+    this.style.background = `url(https://blog.kakaocdn.net/dn/H4k8p/btqUUqx7TLT/VAMfjsV79wqyKIfOGXn5P0/img.jpg) repeat-x 0/auto 100%`;
+    // 트랜스폼 변경: 스케일 1.5, 회전 720도
+    this.style.scale = "1.5";
+    this.style.rotate = "720deg";
+    // 트랜지션 : 2초 ease-in-out
+    this.style.transition =
+      "2s ease-in-out";
+
+    // 4초 후에 다시 원래 크기로 돌아가기
+    setTimeout(() => {
+      this.style.scale = "1";
+    }, 4000);
   },
 ];
 // 배열끝에 콤마는 원래는 쓰면 에러나지만
@@ -112,3 +172,15 @@ console.log(
 
 // 출력대상: target의 두번째
 target[1].innerHTML = `${arr2[0]}은 ${arr2[2]}년에 일제에 항거하여 ${arr2[1]}를 들고 일어난 민중봉기를 기념하는 날이다!`;
+
+// 두번째 출력박스를 클릭하면 배열 값에 있는 함수 호출하기
+target[1].onclick = arr2[3];
+
+// 두번째 박스에 타이틀 출력
+target[1].title =
+  "클릭하시면 만세를 합니다!";
+
+// 두번째 박스에 손가락 표시
+target[1].style.cursor = "pointer";
+
+// console.log("배열안의 함수 : ", arr2[3]);
