@@ -30,7 +30,8 @@
 **********************************************/
 
 // 1. 배열 셋팅하고 출력하기 ////////////////
-// 1-1. new 키워드로 배열선언 및 할당하기
+
+// 1-1. new 키워드로 배열선언 및 할당하기 ///////////////////////////
 // 그런데 배열은 굳이 new키워드로 선언할 필요는 없다!
 // 배열 리터럴로 생성할 수 있다!
 const arr1 = new Array(
@@ -46,7 +47,7 @@ const arr1 = new Array(
   "김태리",
   function () {
     // this는 누구? 호출한 요소 자신
-    alert("김태리 멋짐!!!");
+    // alert("김태리 멋짐!!!");
     // 1. 호출한 요소 박스에 김태리 사진 이미지 넣기
     this.innerHTML += `
       <img src="https://cdn.iconsumer.or.kr/news/photo/202210/25071_29865_256.jpg" 
@@ -57,32 +58,70 @@ const arr1 = new Array(
           left: 0;
           width: 250px; 
           height: 300px; 
+          border-radius: 10%;
+          display: none;
+          transition: .4s ease-out;
+          translate: -50% -50%;
+          z-index: 100;
+          pointer-events: none;
         "
         id="kim"
       />`;
-
+    // 위에 CSS 코드 체크
+    // pointer-events: none -> 실제 이벤트는 부모박스인데
+    // 자식 요소인 이미지가 매번 가림으로 인해 이벤트가
+    // 순간 없어졌다가 다시 걸렸다가 함으로 떨림 증상 발생!
+    // 이 설정으로 본 이미지는 이벤트를 없애고 아래쪽 요소가
+    // 그대로 이벤트를 발생하게 됨! 따라다니는 기능에서
+    // 매우 중요한 설정임!
     // 앱솔루트의 부모자격은  this에게 준다
     this.style.position = "relative";
+
+    // 위에서 생성된 id = "kim" 요소를 변수에 할당한다
+    const kim =
+      document.querySelector("#kim");
+
     // 2. 마우스 오버 시, 나타남
     this.onmouseenter = () => {
-      document.querySelector("#kim")
-       .style.display = "block";
+      document.querySelector
+        kim
+      .style.display = "block";
     };
     // 3. 마우스 아웃시, 사라짐
     this.onmouseleave = () => {
-      document.querySelector("#kim")
-       .style.display = "none";
+      document.querySelector
+        kim
+      .style.display = "none";
     };
     // 4. 마우스 움직이면 따라다니게 하기
     // mousemove 이벤트 : 마우스 포인터가 대상 요소 위에서 움직일 때 계속 발생
-    this.onmousemove= (헐) => {
+    this.onmousemove = (헐) => {
       // 헐 변수는 이벤트 전달 변수임!
-      // 어떤 함수도 전달 값이 없는데 변수 하나를 쓰면 
+      // 어떤 함수도 전달 값이 없는데 변수 하나를 쓰면
       // 곧 그것이 이벤트 전달변수가 됨!
       // 그 요소에서 발생하는 이벤트를 객체로 가지고 있음
       // 대체해서 event라고 직접 전체 이벤트 객체를 쓸 수 있음
-      console.log("pageX:",헐.pageX);
-      console.log("pageY:",헐.pageY);
+
+      // 이벤트 객체하위 pageX, pageY는 최상단, 최왼쪽으로 부터
+      // 마우스 커서의 위치를 xy축으로 단위없는 px값을 리턴한다.
+      // 이 값은 사이트 전체를 이동하는 어떤 요소를 구현할 때 많이 사용
+      // console.log("pageX:",헐.pageX);
+      // console.log("pageY:",헐.pageY);
+
+      // 여기서는 본 박스 안에서만 그 위치를 알면 되므로
+      // -> offsetX, offsetY -> 해당 부모 요소 박스로 부터 위치를 리턴함
+      // console.log(
+      //   "offsetX:",
+      //   헐.offsetX
+      // );
+      // console.log(
+      //   "offsetY:",
+      //   헐.offsetY
+      // );
+
+      // 위치값 반영대상 : 김태리 이미지 -> kim
+      kim.style.left = `${헐.offsetX}px`;
+      kim.style.top = `${헐.offsetY}px`;
     };
   }
 );
@@ -127,9 +166,14 @@ target[0].innerHTML = `
 
 // 김태리 기능 추가!
 // 함수 호출 : 배열 마지막 번호 == 배열개수 - 1
-target[0].onclick = arr1[arr1.length - 1];
+target[0].onclick =
+  arr1[arr1.length - 1];
 
-// 1-2. 배열 리터럴 방식의 선언과 할당
+// 클릭 이벤트 강제 실행!
+// click() 메서드 호출!
+target[0].click();
+
+// 1-2. 배열 리터럴 방식의 선언과 할당 /////////////////////////////
 // 배열변수명 = [값1, 값2,...]
 // new 키워드 없이 바로 쓸 수 있는 객체임!
 // 이런 배열과 같은 객체를 정적객체(Static Object)라고 함!
@@ -184,3 +228,51 @@ target[1].title =
 target[1].style.cursor = "pointer";
 
 // console.log("배열안의 함수 : ", arr2[3]);
+
+// 1-3. 배열을 미리 생성하여 각각 할당하기 //////////////////
+// 배열변수명 = [] -> 배열리터럴
+// 배열변수명.length = 숫자 -> 숫자만크ㅏㅁ 배열이 생성됨
+// 배열변수명.length 는 배열 개수를 앍기/쓰기/ 모두 가능
+
+const arr3 = [];
+// const 상수로 리터럴 선언, 할당 후
+// 배열값 변경은 자유롭다!
+// 그러나 배열형을 변경할 수 없다! 즉, 재할당 불가!!
+// 그래서 상수임! (코드 보안상, 안전상 이유로 많이 사용함)
+
+console.log("arr3:", arr3);
+
+// 배열개수 미리 셋팅하기
+arr3.length = 8;
+// 베열의 개수를 미리 셋팅해도 배열을 더 추가할 수 있음!
+// 의미는? 이미 배열 개수를 정하고 이것을 지키려는 의도임!
+
+console.log("arr3:", arr3);
+
+// 각 배열 주소에 값을 할당
+arr3[0] = "산";
+arr3[1] = "힐이버지";
+arr3[2] = "구름모자";
+arr3[3] = "썻네~!";
+arr3[4] = "나비같이";
+arr3[5] = "훨훨";
+arr3[6] = "훠얼훨";
+arr3[7] = "날아서~!";
+
+// 배열 전체값 출력하기 : valueOf()
+console.log("arr3 전체값:", arr3.toString());
+console.log("arr3 전체값:", arr3.valueOf().toString());
+// 현재 브라우저는 valueOf()를 사용하지 않아도 배열 값을 출력해줌
+// toString() 출력은 배열값을 콤마로 연결한 문자형으로 변환한다
+
+// 변수값 사이에 구분자 넣고 문자형으로 배열값 변경하기
+// join(구분자) -> 배열의 요소를 구분자로 연결
+console.log("arr3 전체값:", arr3.join("♥︎"));
+
+// 배열값 맨뒤에 값 추가하기 메서드 : push()
+arr3.push("김창환 작사");
+
+// 배열값을 세번째 target박스에 출력
+target[2].innerHTML = arr3.join("★")
+
+// -> 배열 메서드는 매우 중요! 별도로 훈련 필요
