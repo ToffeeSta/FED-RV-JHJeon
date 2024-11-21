@@ -455,26 +455,24 @@ target[3].addEventListener(
 
 // 2-2. 객체리터럴로 객체 생성하기 //////
 const GU = {
-  name : "공유",
+  name: "공유",
   tall: "184cm",
   weight: "74kg",
   com: "매니지먼트숲",
   work: "도깨비,부산행",
-  msgFn: function(txt){
+  msgFn: function (txt) {
     // 1. 메시지 띄우기(호출확인!)
-    alert("팬레터:"+txt);
+    alert("팬레터:" + txt);
     // this의 의미는?
     // 1)만약 함수를 별도로 호출하였으면
     // 객체안의 메서드이므로 객체자신임!
     // 2)만약 이벤트설정이 직접 할당되었으면
     // 호출한 요소 자신이 this임!
-    console.log("this:",this);
-
-
+    console.log("this:", this);
   },
 }; //////// GU객체 ////////////
 
-console.log("GU객체:",GU);
+console.log("GU객체:", GU);
 
 // 내용출력 : 대상 - target[4] 다섯번째 박스
 target[4].innerHTML = `
@@ -490,8 +488,7 @@ target[4].innerHTML = `
 target[4].style.lineHeight = "24px";
 
 // 툴팁 띄우기
-target[4].title = 
-`여기를 클릭하여 ${GU.name}팬레터를 확인하세요!`;
+target[4].title = `여기를 클릭하여 ${GU.name}팬레터를 확인하세요!`;
 
 // 손가락모양
 target[4].style.cursor = "pointer";
@@ -590,8 +587,6 @@ target[5].style.lineHeight = "34px";
 target[5].style.cursor = "pointer";
 target[5].style.fontSize = "20px";
 
-tomObj = ssgObj;
-
 // 할당형 함수는 바로 호출시 하단에서 해야함!
 showMovieInfo();
 
@@ -600,17 +595,15 @@ showMovieInfo();
 //////////////////////////////////
 // 버튼에 사용할 이름 배열만들기
 const choiceName = [
-  "탐쌤",
-  "훈련생1",
-  "훈련생2",
-  "훈련생3",
-  "훈련생4",
-  "훈련생5",
-  "훈련생6",
-  "훈련생7",
-  "훈련생8",
-  "훈련생9",
-  "훈련생10",
+  "전정훈",
+  "김혜민",
+  "양현석",
+  "황대웅",
+  "이민경",
+  "이민지",
+  "윤고은",
+  "김다영",
+  "강수현",
 ];
 
 // 배열확인
@@ -693,51 +686,42 @@ for (let i = 0; i < cntBtn; i++) {
 
     switch (btnTxt) {
       // 자기자신 오브젝트
-      case "탐쌤초이스":
+      case "전정훈초이스":
         // 객체의 내용을 덮어쓰기 변경함
-        tomObj = ssgObj;
+        tomObj = jjhObj;
         break;
 
-      case "훈련생1초이스":
-        tomObj = ssgObj;
+      case "김혜민초이스":
+        tomObj = khmObj;
         break;
 
-      case "훈련생2초이스":
-        tomObj = ssgObj;
+      case "양현석초이스":
+        tomObj = yhsObj;
         break;
 
-      case "훈련생3초이스":
-        tomObj = ssgObj;
+      case "황대웅초이스":
+        tomObj = hdwObj;
         break;
 
-      case "훈련생4초이스":
-        tomObj = ssgObj;
+      case "이민경초이스":
+        tomObj = lmkObj;
         break;
 
-      case "훈련생5초이스":
-        tomObj = ssgObj;
+      case "이민지초이스":
+        tomObj = mimObj;
         break;
 
-      case "훈련생6초이스":
-        tomObj = ssgObj;
+      case "윤고은초이스":
+        tomObj = ygeObj;
         break;
 
-      case "훈련생7초이스":
-        tomObj = ssgObj;
+      case "강수현초이스":
+        tomObj = shkObj;
         break;
 
-      case "훈련생8초이스":
-        tomObj = ssgObj;
+      case "김다영초이스":
+        tomObj = kdyObj;
         break;
-
-      case "훈련생9초이스":
-        tomObj = ssgObj;
-        break;
-
-      case "훈련생10초이스":
-        tomObj = ssgObj;
-        break;
-
     }
 
     console.log(
