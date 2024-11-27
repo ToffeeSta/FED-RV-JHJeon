@@ -4,7 +4,7 @@
 
 /* 외부CSS 불러오기 */
 /* 12그리드 CSS */
-@import url(./grid_12_float.css);
+@import url(./grid_12_flex.css);
 
 /* 초기화 */
 html,body,h1,h2,ul,ol{
@@ -24,10 +24,6 @@ html,body,h1,h2,ul,ol{
     max-width: 1200px;
     /* 블록박스 중앙정렬 -> 마.영.오! */
     margin: 0 auto;    
-}
-/* 파티션박스 */
-.cont-box{
-    height: 100%;
 }
 
 /* 임시 타이틀 */
