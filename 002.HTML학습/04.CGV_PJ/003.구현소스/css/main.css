@@ -157,12 +157,92 @@ li+li 두번째 li부터 선택
   content: '📣';
 }
 
+/* 영사기 박스 */
+.cam{
+  position: absolute;
+  top: -10px;
+  right: -65px;
+}
+/* 영사기 이미지 */
+.cam img{
+  width: 50px;
+  rotate: 30deg;
+  /* 트랜지션: trs 양방향공통 */
+  transition: .3s .3s;
+}
+/* GNB에 오버시 영사기 이미지 회전 */
+.gnb:hover .cam img{
+  rotate: 0deg;
+  /* 트랜지션 지연시간 오버시엔 없앰! */
+  transition-delay: 0s;
+}
+/* 빔박스 */
+.beam{
+  position: absolute;
+  z-index: -1;
+  /* 스테틱 이미지보다 아래 */
+  top: -16px;
+  right: 9px;
+  width: 0px;
+  height: 70px;
+  background: url(../images/bim.png) no-repeat right/auto 100%;
+  /* 트랜지션: trs */
+  transition: .3s;
+
+  /* outline: 2px dashed yellow; */
+}
+/* GNB에 오버시 빔박스 보이기 */
+.gnb:hover .beam{
+  width: 200px;
+  /* 영사기 이미지 .3s 돌동안 대기하기 */
+  transition-delay: .3s;
+  /* 빔떨림 애니메이션 호출 */
+  animation: beam-ani .05s linear infinite alternate;
+  /* 0.05초간 등속도(linear)로 계속(infinite) 번갈아(alternate) */
+}
+/* 빔떨림 애니 키프레임 */
+@keyframes beam-ani {
+  to{
+    opacity: 0.5;
+  }
+}
+
+/* 가상요소로 상영스크린 만들기 */
+.cam::after{
+  content: '';
+  position: absolute;
+  /* 메뉴,빔보다 아래 */
+  z-index: -2;
+
+  top: -15px;
+  right: 120px;
+  /* 트랜지션 대상: opacity */
+  width: 0;
+  opacity: 0;
+
+  height: 66px;
+  background: url(../images/screen.gif) no-repeat -50% center/auto 80%;
+  /* 트랜지션 */
+  transition: opacity .3s;
+}
+/* GNB오버시 스크린 보이기 */
+.gnb:hover .cam::after{
+  width: 129px;
+  opacity: 1;
+  /* 트랜지션 딜레이 */
+  transition-delay: .6s;
+}
+
 
 /*************** 2. 메인영역 ***************/
 .main-area {
   position: relative;
   /* 부모자격 - .screen */
-  height: 788px;
+
+  /* 비율설정하기 : 이때 높이값 주면 안됨!!! */
+  aspect-ratio: 1200 / 788;
+
+  /* height: 788px; */
   /* 배경이미지 */
   background: url(../images/bg.jpg)
     no-repeat center/cover;
@@ -171,11 +251,11 @@ li+li 두번째 li부터 선택
 .screen {
   /* 앱솔루트 포지션 : poa */
   position: absolute;
-  top: 136px;
-  left: 257px;
+  top: 17.2%;
+  left: 21.3%;
   /* 나의 부모는? .main-area */
-  width: 701px;
-  height: 397px;
+  width: 58.6%;
+  height: 50.6%;
   /* 기본배경색 검정! */
   background-color: #000;
 }
@@ -190,33 +270,51 @@ li+li 두번째 li부터 선택
 /* 2-2. 포스터 메뉴 */
 .poster-menu {
   position: absolute;
-  bottom: 43px;
-  left: 226px;
+  /* 비율유지 부모박스 기준 % */
+  width: 63%;
+  aspect-ratio: 4.5/1;
+  /* outline: 2px dashed yellow; */
+  bottom: 3.5%;
+  left: 50%;
   /* 나의 부모는? .main-area */
+  translate: -50%;
+}
+/* li상위 ul 플렉스박스 만들기 */
+.poster-menu ul {
+  display: flex;
+  /* 마진대신 gap으로 간격셋팅 */
+  gap: 0 1%;
+  /* 비율유지 부모박스 높이값 채우기 */
+  height: 100%;
 }
 
 /* 메뉴 리스트 ul>li 상위 li만 선택 */
 .poster-menu ul > li {
   /* 렐러티브 포지션 : 부모자격 (.mv-info) */
   position: relative;
-  /* 부모자격에서 넘치는 자식요소 숨기기설정!
-  oh */
+  /* 플렉스박스 자식요소 등분할(높이는 자동채움) */
+  flex: 1;
+  /* 부모자격에서 넘치는 
+  자식요소 숨기기설정! oh */
   overflow: hidden;
-  /* 블록 옆으로 흐르게 : float */
-  float: left;
+  /* 블록 옆으로 흐르게 : float 사용안함! */
+  /* float: left; */
 }
 
 /* ul>li 사이간격 
 li+li 앞에 li가 있는 li선택
 즉, 첫번째 li빼고 다 선택 */
-.poster-menu ul > li + li {
-  /* 왼쪽마진 : ml */
+/* 왼쪽마진 : ml */
+/* .poster-menu ul > li + li {
   margin-left: 10px;
-}
+} */
 
 /* 포스터 이미지 */
 .poster-menu img {
-  height: 170px;
+  width: 100%;
+  height: 100%;
+  /* 이미지 비율로 채우기 */
+  object-fit: cover;
 }
 
 /* 영화정보박스 */
@@ -235,14 +333,14 @@ li+li 앞에 li가 있는 li선택
   /* 줄간격 : lh */
   line-height: 2;
   /* 패딩탑 : pt35 */
-  padding-top: 35px;
+  padding-top: min(3.5rem,2.6vw);
   /* 패딩,보더 크기포함박스 : bxb */
   box-sizing: border-box;
 
   /* 글자체 */
   font-family: "Cute Font", cursive;
   /* 글자크기 */
-  font-size: 16px;
+  font-size: min(1.6rem,1.2vw);
 
   /* 트랜지션 : trs 속시이지 */
   transition: .3s ease-out;
@@ -257,7 +355,7 @@ li+li 앞에 li가 있는 li선택
 /* 첫번째 제목만 큰글자 만들기 */
 .mv-info ol li:first-child {
   /* 글자크기 : fz */
-  font-size: 20px;
+  font-size: min(2rem,1.5vw);
   /* 글자 두껍게 : fwb */
   /* font-weight: bold; */
   /* 글자색 : c */
