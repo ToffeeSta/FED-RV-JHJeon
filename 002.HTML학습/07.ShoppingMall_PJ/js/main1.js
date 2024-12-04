@@ -57,3 +57,10 @@ myFn.qs('.ab2').onclick = ()=>{
     slide.style.transition = '.4s ease-in-out';
 };
 
+myFn.qs('.ab1').onclick = ()=>{
+    // 순번1감소
+    seqNum--;
+    // 슬라이드 CSS변경하기
+    slide.style.translate = (seqNum*-100)+'%';
+    slide.style.transition = '.4s ease-in-out';
+};
