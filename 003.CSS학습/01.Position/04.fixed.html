@@ -19,7 +19,7 @@
       h1.tit {
         /* 포지션 : pof */
         position: fixed;
-        /**************************************
+      /**************************************
         [ 4. fixed 포지션 ] 
 
         1. 보이는 화면을 기준한 포지션이다!
@@ -54,7 +54,7 @@
     
     **************************************/
         top: 0;
-        left: 0;
+        left: 0; 
 
         /* 
         -> 위치값 사용안하면 젠틀픽스드!
@@ -68,7 +68,7 @@
         width: 100%;
         text-align: center;
         margin: 0;
-        padding: 20px;
+        padding: 20px;        
         border: 4px solid darkgreen;
         border-radius: 0 0 50% 50%;
         /* border-radius: 50px 200px 300px; */
@@ -85,8 +85,10 @@
            -> 왼쪽위 부터 시계방향
         */
 
+
         /* 패딩,보더 포함박스 설정 : bxb */
         box-sizing: border-box;
+
 
         background-color: lightgreen;
 
@@ -276,7 +278,7 @@
       }
 
       /* 나는 젠틀픽스드다! */
-      #f1 {
+      #f1{
         position: fixed;
         z-index: 100;
         width: 50%;
@@ -287,7 +289,7 @@
       }
 
       /* 포스터 보기 박스 */
-      .fixed-poster {
+      .fixed-poster{
         position: fixed;
         top: 250px;
         right: -209px;
@@ -295,18 +297,19 @@
         z-index: 9999999;
 
         /* 트랜지션 : trs 속시이지 */
-        transition: 0.4s ease-out;
+        transition: .4s ease-out;
 
         /* background-color: red; */
       }
       /* 포스터에 마우스 오버시
       right값 변경으로 포스터 보이기 */
-      .fixed-poster:hover {
+      .fixed-poster:hover{
         right: 0;
       }
 
+
       /* 글자span */
-      .fixed-poster span {
+      .fixed-poster span{
         position: absolute;
         top: 0;
         left: -50px;
@@ -328,7 +331,7 @@
         /* 참고) 단어간격 : word-spacing */
       }
       /* 포스터 이미지 */
-      .fixed-poster img {
+      .fixed-poster img{
         height: 300px;
         /* 블록박스에 단독 이미지
         하단 간극 없애기 : vam */
@@ -336,21 +339,27 @@
       }
 
       /* 부모가 많은 요소를 fixed처리하기
-        display : inline 요소가 자동 block처리됨!
-        -가로,세로 크기 내용만큼 생김!
-        -부모가 아무리 많아도 fixed는 보이는 화면이 그 기준이 된다! */
-      .iamfixed {
+        - display: inline 요소가 자동
+        block처리됨!
+        - 가로,세로크기 내용만큼 생김!
+        - 부모가 아무리 많아도 fixed는
+        보이는 화면이 그 기준이된다!
+      
+      */
+      .iamfixed{
         position: fixed;
         top: 200px;
         right: 200px;
-        z-index: 99999999;
+        z-index: 9999999;
 
         background-color: yellowgreen;
         border: 4px double blue;
         border-radius: 50%;
         padding: 15px;
         font-size: 30px;
+
       }
+
     </style>
   </head>
   <body>
@@ -366,13 +375,10 @@
     </div>
 
     <!-- 포스터보기 fixed적용박스 -->
-    <div class="fixed-poster">
-      <img
-        src="./images/ab0.jpg"
-        alt="포스터"
-      />
+     <div class="fixed-poster">
+      <img src="./images/ab0.jpg" alt="포스터">
       <span>포스터보기</span>
-    </div>
+     </div>
 
     <!-- 첫번째 앱솔루트 박스 -->
     <div class="bx" id="a1">a1</div>
@@ -435,9 +441,8 @@
               나는 span앱솔루트다!
             </span>
 
-            <span class="iamfixed"
-              >🧑🏻‍💻개발자🧑🏻‍💻</span
-            >
+            <!-- 부모가 많은 요소를 fixed처리하기 -->
+             <span class="iamfixed">👩‍🔧개발자👨‍🔧</span>
           </div>
         </div>
       </div>
