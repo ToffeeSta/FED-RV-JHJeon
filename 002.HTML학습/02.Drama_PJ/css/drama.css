@@ -31,36 +31,38 @@ h2.tit{
 
 /* 이동 네비게이션 메뉴 */
 .menu{
-/* 글자중앙 */
-text-align: center;
+    /* 글자 중앙 */
+    text-align: center;
 }
 /* 하위 h2 */
 .menu h2{
-  /* 글자크기 */
-  font-size: 16px;
-  font-weight: normal;
+    /* 글자크기 : fz */
+    font-size: 16px;
+    /* 글자 두께 해제 : fwn */
+    font-weight: normal;
+
 }
 /* 하위 a */
 .menu a{
-  /* 글자색 */
-  color: #555;
-  /* 밑줄 없앰 */
-  text-decoration: none;
+    /* 디자인 적용위해 display변경 */
+    display: inline-block;
+    line-height: 2.5;
+    /* 글자색 : c */
+    color: #555;
+    /* 밑줄없앰 : tdn */
+    text-decoration: none;
+    /* 양쪽마진 */
+    margin: 0 10px;
 }
-
 /* 하위 a.on */
-/* 중요! 개인프로젝트 상단바에도 활용해야할 듯 글자 밑 언더라인 일정 거리 떨어지게 */
 .menu a.on{
-  /* 글자색 진하게 */
-  color: #000;
-  display:inline-block;
-  line-height: 2.5;
-  border-bottom: 1px solid red;
+    /* 하단보더 : bdb */
+    border-bottom: 1px solid #000;
+    /* 글자색 진하게 */
+    color: #000;
+    /* text-decoration: underline; */
 }
 
-.menu span{
-  color: #999;
-}
 
 /* ul의 li를 옆으로 흐르게하기 */
 .drama ul > li{
@@ -191,7 +193,7 @@ section.drama {
 }
 /* 플러스기호 */
 .subscribe span{
-    color: lightgreen;
+    color: blue;
 }
 /* 구독자수 */
 .subscribe b{
