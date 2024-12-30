@@ -9,7 +9,56 @@ import * as dkbData from "../data/dkb_data.js";
 // as로 별칭을 지어주면 객체화되어 담겨진다!
 // import { previewData } from "../data/dkb_data.js";
 
-console.log(dkbData);
+// console.log(dkbData);
+
+// 도깨비 GNB 데이터 불러오기
+import gnbData from "../data/gnb_data.js";
+console.log(gnbData, Object.keys(gnbData), gnbData["About tvN"]);
+
+// 0. GNB 데이터 바인딩하기
+$(".gnb").html(`
+    <ul class="fx-box">
+      ${Object.keys(gnbData)
+        .map(
+          (v) => `
+        <li>
+          <a href="#">
+            ${
+              v +
+              (gnbData[v] == "없음"
+                ? ""
+                : '<i class="fa-solid fa-chevron-down"></i>')
+            }
+            
+          </a>
+          ${              
+              (gnbData[v] == "없음"
+                ? ""
+                : `
+                <!-- 서브메뉴 -->
+                <aside class="smenu">
+                  <div class="inbox">
+                    <h2>${v}</h2>
+                    <ol>
+                    ${
+                      gnbData[v].map(v2=>`
+                        <li>
+                          <a href="#">${v2}</a>
+                        </li>
+                      `).join('')
+                    }
+                    </ol>
+                  </div>
+                </aside>
+                
+                `)
+            }
+        </li>
+        `
+        )
+        .join("")}
+    </ul>
+  `);
 
 // 1. 슬라이드함수 호출하여 실행하기
 slideFn();
@@ -46,12 +95,23 @@ $(".preview-box ul").html(
 // `)
 // .join('')
 
+///////////////////////////////////////////////
 /// 현장포토영역 : 데이터 연결하여 태그 만들기 ///
+///////////////////////////////////////////////
+
 // 대상: .live-box
-$('.live-box ul').html(
-  dkbData.liveData.map(v=>`
-    <li data-idx="1">
-      <figure>ㅋㅋㅋ
+// 주의: 제이쿼리 html() 메서드의 값으로 map변환만 쓰면
+// join('') 자동 변환되지만 다른 태그 합칠경우
+// 서비스 기능이 비활성화 된다!
+// 이런경우 JS기본 사용법 대로 아래처럼 "맵죠잉~?"
+// 배열.map().join('')
+$(".live-box").html(
+  "<ul>" +
+    dkbData.liveData
+      .map(
+        (v) => `
+    <li data-idx="${v.idx}">
+      <figure>
         <img
           src="./images/live_photo/${v.imgName[0]}.jpg"
           alt="${v.title}"
@@ -59,11 +119,65 @@ $('.live-box ul').html(
         <figcaption>${v.title}</figcaption>
       </figure>
     </li>
-  `)
+  `
+      )
+      .join("") +
+    "</ul>"
 );
 
+/////////////////////////////////////////////////
+/// 대표포스터영역 : 데이터 연결하여 태그 만들기 ///
+/////////////////////////////////////////////////
 
+// 대상: .poster-box
+$(".poster-box").html(
+  "<ul>" +
+    dkbData.posterData
+      .map(
+        (v) => `
+    <li data-idx="${v.idx}">
+    <figure>
+    <img
+    src="./images/poster_img/${v.imgName}.jpg"
+    alt="${v.title}"
+    />
+    <figcaption>${v.title}</figcaption>
+    </figure>
+    </li>
+    `
+      )
+      .join("") +
+    "</ul>"
+);
 
+/////////////////////////////////////////////////
+/// 최신동영상영역 : 데이터 연결하여 태그 만들기 ///
+/////////////////////////////////////////////////
+
+// 대상: .clip-box
+$(".clip-box").html(
+  `<ul class="slide swiper-wrapper" data-db="clipData">
+    ${dkbData.clipData
+      .map(
+        (v) => `
+        <li class="swiper-slide" data-idx="${v.idx}">
+          <div class="clip-mv-box">
+            <img
+              src="./images/clip_img/${v.idx}.jpg"
+              alt="${v.subtit}"
+            />
+          </div>
+          <h4>
+            ${v.subtit}
+          </h4>
+          <h3>${v.title}</h3>
+        </li>        
+      `
+      )
+      .join("")}
+      </ul>
+    `
+);
 
 //////////////////////////////
 //스와이퍼 인스턴스 생성하기 ///
