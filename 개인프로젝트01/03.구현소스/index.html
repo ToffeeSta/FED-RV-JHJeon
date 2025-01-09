@@ -1,40 +1,58 @@
 <!DOCTYPE html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta
-      name="viewport"
-      content="width=device-width, initial-scale=1.0"
-    />
-    <title>삼성AI</title>
-    <!-- main CSS 링크 -->
-     <link rel="stylesheet" href="CSS/main.css">
-  </head>
-  <body>
-    <!-- 1. 상단영역 -->
-    <div id="top-area">
-      <header class="top-area"></header>
-      <h1 class="site-logo">Samsung</h1>
-      <div class="site-navi" id="neviMenu">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Display GLB File</title>
+    <style>
+        body {
+            margin: 0;
+            overflow: hidden;
+        }
+        canvas {
+            display: block;
+        }
+    </style>
+</head>
+<body>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/three.js/110/three.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/three@0.110.0/examples/js/loaders/GLTFLoader.js"></script>
+    <script>
+        // Scene setup
+        const scene = new THREE.Scene();
+        const camera = new THREE.PerspectiveCamera(75, window.innerWidth / window.innerHeight, 0.1, 1000);
+        const renderer = new THREE.WebGLRenderer();
+        renderer.setSize(window.innerWidth, window.innerHeight);
+        document.body.appendChild(renderer.domElement);
 
-          <ul class="nevi-list">
-              <li class="navi-item1">AI</li>
-              <li class="navi-item2">Galaxy AI</li>
-              <li class="navi-item3">Samsung AI TV</li>
-              <li class="navi-item4">BESPOKE AI</li>
-            </ul>
-        </div>
-      
-    </div>
-    <!-- 2. 메인영역 -->
-    <div id="main-area">
-      <main class="main-area"></main>
-    </div>
-    <!-- 3. 하단영역 -->
-    <div id="bottom-area">
-      <footer
-        class="bottom-area"
-      ></footer>
-    </div>
-  </body>
+        // Light
+        const light = new THREE.DirectionalLight(0xffffff, 1);
+        light.position.set(5, 5, 5).normalize();
+        scene.add(light);
+
+        // Load GLB model
+        const loader = new THREE.GLTFLoader();
+        loader.load(
+            'path/to/your/model.glb', // Replace with the path to your .glb file
+            function (gltf) {
+                scene.add(gltf.scene);
+            },
+            undefined,
+            function (error) {
+                console.error('An error occurred:', error);
+            }
+        );
+
+        // Camera position
+        camera.position.z = 5;
+
+        // Animation loop
+        function animate() {
+            requestAnimationFrame(animate);
+            renderer.render(scene, camera);
+        }
+        animate();
+    </script>
+    <iframe src="./Earth.glb" frameborder="0"></iframe>
+</body>
 </html>
