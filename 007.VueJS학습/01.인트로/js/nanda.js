@@ -3,7 +3,7 @@
 /*************************************** 
  * [ 뷰JS 인스턴스 생성 기본구성 ]
  * new Vue({
- *  1. 대상요소 : el{}
+ *  1. 대상요소 : el
  *  2. 데이터 : data{}
  *  3. 메소드 : methods{}
  *  4. 라이프사이클 : created(){} / mounted(){}
@@ -150,9 +150,12 @@ const vm = new Vue({
           // 3) 리스트 위치로 스크롤 애니 이동
           $("html,body").animate(
             {
-              scrollTop: $(".gwrap").offset().top+"px",
+              scrollTop:
+                // offset().top 은 요소의 top위치값
+                $(".gwrap").offset().top + "px",
             },
-            600, "esseOutExpo"
+            600,
+            "easeOutExpo"
           );
         }
       );
