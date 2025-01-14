@@ -138,12 +138,13 @@ function localsFn() {
 } /////////// localsFn //////////
 
 // 추가로 각 출력 영역을 클릭하면 해당 로컬쓰만 지우기셋팅
-// 배우이름 출력
+// 배우이름 삭제
 myFn.qs(".local .nm").onclick = () => localStorage.removeItem("actor-name");
-// 역할이름 출력
+
+// 역할이름 삭제
 myFn.qs(".local .role").onclick = () => localStorage.removeItem("actor-role");
 
-// 캐릭터소개 출력
+// 캐릭터소개 삭제
 myFn.qs(".local .cat").onclick = () => localStorage.removeItem("actor-cat");
 
 // "minfo" 로컬쓰 키가 없으면 객체를 만들어 넣기 함수 //
@@ -168,16 +169,20 @@ function makeObj() {
   // 넣어야 로컬쓰에 들어간다!
   // -> JSON.stringify(배열/객체)
   localStorage.setItem("minfo", JSON.stringify(obj));
+  // 화면에 게시판 바인딩하기
+  bindData();
 } ///////// makeObj //////
 
 //// 화면에 게시판을 뿌려주는 바인딩함수 ///////
 function bindData() {
-  // 1. 로컬쓰 데이터 읽어오기 : minfo
+  // 1. 로컬쓰 데이터 읽어오기 : minfo -> 문자형데이터임!
   let localData = localStorage.getItem("minfo");
-  // 2. 로컬쓰 데이터 파싱하기 : JSON.parse()
-  localData = JSON.parse(localData);
+  console.log("로컬쓰 파싱전!", localData);
 
-  console.log("게시판 화면 뿌리기!", localData);
+  // 2. 로컬쓰 데이터 파싱하기 : JSON.parse() -> 배열객체!
+  localData = JSON.parse(localData);
+  console.log("로컬쓰 파싱후!", localData);
+
   // 출력대상 : .board
   // 3. 화면에 출력하기 ////////
   myFn.qs(".board").innerHTML = `
@@ -206,6 +211,115 @@ function bindData() {
     </table>
 `;
 } ////////////// bindData //////////////////
+
+/////////////////////////////////////////////////
+////// [ 게시판 최초호출 및 데이터 셋업 ] //////////
+//////////////////////////////////////////////////
+
+// 게시판 최초호출 : 로컬쓰 minfo 존재여부에 따라처리
+console.log("최초minfo로컬쓰가 있는가?", localStorage.getItem("minfo"));
+// 만약 결과가 null이면 이 로컬쓰는 없는것임!
+// 따라서 if문의 조건문에 사용하면 코드를 지정할 수 있다!
+
+// 만약에 minfo 로컬쓰가 존재하면 bindData()함수호출!
+if (localStorage.getItem("minfo")) bindData();
+// 만약 minfo 로컬쓰가 없으면 생성하라!
+else makeObj();
+
+/////////////////////////////////////////////////
+/// [ 데이터 추가 버튼 클릭시 데이터 추가하기 ] ////
+/////////////////////////////////////////////////
+// 대상 : #sbtn (입력버튼)
+// 데이터 읽어올 대상 : #tit, #cont
+const tit = myFn.qs("#tit");
+const cont = myFn.qs("#cont");
+
+// 이벤트 함수 설정하기 /////
+myFn.qs("#sbtn").onclick = () => {
+  console.log("입력하라!", tit, cont);
+  // 1. 입력데이터 유효성 검사 : try ~ catch사용!
+  try {
+    // trim() 앞뒤공백 제거 처리해야 공백만 넣기막음!
+    if (tit.value.trim() == "" || cont.value.trim() == "") {
+      throw "제목과 내용은 반드시 입력해야합니다!";
+    }
+  } catch (err) {
+    /// try ////
+    // catch문에 들어온 경우는 에러상황임!
+    alert(err);
+    // 함수 아랫부분 실행 못하도록 리턴함!
+    return;
+  } /// catch ///
+
+  // 로컬쓰 처리함수 호출!
+  setLS('minfo','add');
+}; ///////////// click 이벤트 함수 ///////////////
+
+
+/////////////////////////////////////////////////
+/// [ 데이터 삭제 버튼 클릭시 데이터 삭제하기 ] ////
+/////////////////////////////////////////////////
+// 대상 : .del-link a (삭제버튼)
+myFn.qsa('.del-link a').forEach(el=>{
+  myFn.addEvt(el,'click',function(e){
+    // a요소 기본이동막기
+    e.preventDefault();
+
+    // 지울순번 : data-idx속성값
+    let delIdx = this.getAttribute('data-idx');
+    console.log('지울순번:',delIdx);
+  }); //// addEvt ////
+}); ////// forEach /////
+
+
+
+
+////////// 로컬스토리지 처리 공통함수 //////////////
+/************************************************* 
+  함수명 : setLS
+  기능 : 로컬스토리지 데이터를 처리하는 함수
+*************************************************/
+function setLS(key,opt) {
+  // key - 로컬스토리지 키명
+  // opt - 처리옵션(add/delete/update)
+  // -> 일반적으로 데이터 처리는 4가지를 말한다!
+  // ->>> 크루드!(CRUD) -> Create/Read/Update/Delete
+
+  // [ 로컬쓰 처리 기본과정 ]
+  // 로컬쓰읽기->로컬쓰파싱->데이터변경->로컬쓰문자변경후 업데이트!
+
+  // 1. 전달값 및 호출확인
+  console.log("로컬쓰처리!", key);
+
+  // 2. 로컬쓰 minfo 데이터 읽어오기 : 문자형 데이터임!
+  let locals = localStorage.getItem(key);
+
+  // 3. 로컬쓰 minfo 파싱후 데이터 처리하기
+  locals = JSON.parse(locals);
+
+  // 3-1. 'add'일때 데이터 추가하기 ////
+  if(opt == 'add'){
+    locals.push({
+      idx: locals.length + 1,
+      tit: tit.value,
+      cont: cont.value,
+    });
+  } /// if ///
+  // 3-2. 'update'일때 데이터 수정하기 ////
+  else if(opt == 'update'){
+
+  } /// else if ///
+  // 3-3. 'delete'일때 데이터 삭제하기 ////
+  else if(opt == 'delete'){
+
+  } /// else if ///
+
+  // 4. 로컬쓰 변경된 데이터 다시 넣기 : 넣을땐 문자화(stringify)
+  localStorage.setItem(key, JSON.stringify(locals));
+
+  // 5. 다시 데이터 바인딩하기
+  bindData();
+} //////////// setLS 함수 //////////////////////
 
 //******************************************** */
 ///////////////////////////////////////////////
@@ -251,11 +365,9 @@ function sessionsFn() {
 
 // 세션스토리지 개별 삭제 구현하기 ///////
 // 배우이름 삭제
-myFn.qs(".session .nm").onclick = 
-() => sessionStorage.removeItem("actor-name");
+myFn.qs(".session .nm").onclick = () => sessionStorage.removeItem("actor-name");
 // 역할이름 삭제
-myFn.qs(".session .role").onclick = 
-() => sessionStorage.removeItem("actor-role");
+myFn.qs(".session .role").onclick = () =>
+  sessionStorage.removeItem("actor-role");
 // 캐릭터소개 삭제
-myFn.qs(".session .cat").onclick = 
-() => sessionStorage.removeItem("actor-cat");
+myFn.qs(".session .cat").onclick = () => sessionStorage.removeItem("actor-cat");
