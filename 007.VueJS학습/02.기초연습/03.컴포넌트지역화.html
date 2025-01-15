@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>02.컴포넌트 현실화</title>
+    <title>03.컴포넌트 지역화</title>
     <link rel="stylesheet" href="./css/comp1.css" />
     <!-- 뷰JS 스탠드얼론 버전 가져오기! -->
     <script src="https://cdn.jsdelivr.net/npm/vue@2.5.16/dist/vue.js"></script>
@@ -15,7 +15,7 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.13.2/jquery-ui.min.js"></script>
 
     <!-- 메인 JS -->
-    <script src="./js/comp_real.js" type="module"></script>
+    <script src="./js/comp_local.js" type="module"></script>
   </head>
   <body>
     <div class="main-wrap">
@@ -37,6 +37,7 @@
        <div class="grid">
         <de-fashion-list
           v-for="v in exData"
+          v-bind:key="v.idx"
           v-bind:list-idx="v.idx"
           v-bind:list-tit="v.gName"
           v-bind:list-price="v.gPrice"
@@ -44,6 +45,10 @@
         ></de-fashion-list>
        </div>
 
+       <!-- 
+        v-bind:key는 뷰JS에서 반복문으로 만든 요소를
+        구분하기 위한 키를 쓸 것을 
+       -->
 
       <div class="grid">
         <!-- v-for 숫자돌리기
