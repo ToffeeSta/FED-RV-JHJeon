@@ -35,6 +35,7 @@ export default new Vuex.Store({
   },
 
   // 2. 데이터 변경 메서드구역 : mutations ////////
+  // -> 컴포넌트에서 호출시 commit('메서드명',전달값) 사용!
   mutations: {
     // 초기 데이터 셋업 메서드
     initSet(헐,파람){
@@ -47,8 +48,28 @@ export default new Vuex.Store({
         // 설명변수인 desc값 셋팅하기
         헐.desc = 파람.txt;
     },
+    //// 도시정보 변경 메서드 ///
+    changeCityData(헐,파람){
+        // 헐 - state객체
+        // 파람 - 도시명
+        console.log('도시변경:', 헐, 파람);
+
+        // 이미지변수 imgSrc 값 셋팅하기
+        헐.imgSrc = 헐.cityData[파람].이미지;
+        // 설명변수인 desc값 셋팅하기
+        헐.desc = 헐.cityData[파람].설명;
+    },
   },
 
   // 3. 비동기처리 메서드구역 : actions ///////////
-  actions: {},
+  // -> 컴포넌트에서 호출시 dispatch('메서드명',전달값) 사용!
+  // -> 주로 백엔드 데이터를 가져올때 많이 사용됨
+  // -> 컴포넌트에서 created 구역에서 actions 메서드를 호출하고
+  // -> actions의 메서드는 state변수에 데이터를 셋팅하는
+  // -> 경우가 많다!
+  actions: {
+    myAct(헝,벙){
+      console.log("나의액숀~~~!",헝,벙);
+    }
+  },
 }); /////////// Vues.Store /////////////
