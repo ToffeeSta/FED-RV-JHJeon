@@ -30,13 +30,27 @@ const Foods = {
 
 const Game = {
   template: `
-    <div class="game router">World Game</div>`,
+  <div v-bind:class="
+    'game router ' + this.$route.params.cls
+  ">
+    World Game {{ this.$route.params.item }}
+  </div>
+  `,
 };
 
+// 회사 컴포넌트 템플릿 ///////////
 const Corp = {
   template: `
-    <div class="corp router">Introduction</div>`,
+    <div class="corp router">{{this.corpName}}</div>`,
+  data(){
+    return{
+      corpName: "🌎World Corporation🌏",
+    }
+  },
 };
+
+// 회사 전역 컴포넌트 만들기 //////
+const CorpComp = Vue.component('corp-comp',Corp);
 
 /********************************************************* 
     [파라미터로 전달된 라우터 값을 읽는 코드법]
@@ -86,7 +100,10 @@ export default new VueRouter({
       path: "/corp",
       // (2) 연결할 컴포넌트 설정 : component
       // -> 외부의 변수로 셋팅할 수 있고 직접 쓸 수 있음
-      component: Corp,
+      component: CorpComp, // 전역 컴포넌트임!
+      // ->>> 컴포넌트용 객체 템플릿만 있어도 코드를 넣을 수 있으나
+      // ->>> 전역 컴포넌트로 생성한 경우에도 라우터에 삽입하여
+      // ->>> 사용하는 것은 일반적인 일이다! 얼마든지 이렇게 쓰시오!
     },
     // [ 하위 메뉴 라우트 셋팅!!! ] //////
     {
@@ -98,6 +115,16 @@ export default new VueRouter({
       // (2) 연결할 컴포넌트 설정 : component
       // -> 외부의 변수로 셋팅할 수 있고 직접 쓸 수 있음
       component: Foods,
+    },
+    {
+      // (1) 하위메뉴를 위한 구분명 필수!
+      name: "my-game",
+      // (2) 경로설정 : path -> 경로뒤에 콜론(:)을쓰고 파라미터변수 넣는다!
+      // -> router-link의 to 속성값과 같은값으로 셋팅!
+      path: "/game:item",
+      // (2) 연결할 컴포넌트 설정 : component
+      // -> 외부의 변수로 셋팅할 수 있고 직접 쓸 수 있음
+      component: Game,
     },
   ],
 }); ///////// VueRouter ////////////////
