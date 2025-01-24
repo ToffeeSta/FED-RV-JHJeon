@@ -24,24 +24,24 @@ body {
   padding-bottom: 15px;
 }
 
-.common-box, .fashion-area, .today-area {
+.common-box {
   padding: 4rem;
 }
 
-.big-box-type figure, .post-list ul li:nth-child(3) figure, .post-list-today ul li:nth-child(1) figure {
+.big-box-type figure {
   aspect-ratio: 1/2;
 }
-.big-box-type figure figcaption, .post-list ul li:nth-child(3) figure figcaption, .post-list-today ul li:nth-child(1) figure figcaption {
+.big-box-type figure figcaption {
   translate: 0 -100%;
   padding: 5rem;
   color: #fff;
   background: linear-gradient(to top, #000, transparent);
 }
-.big-box-type figure figcaption h3.s-tit, .post-list ul li:nth-child(3) figure figcaption h3.s-tit, .post-list-today ul li:nth-child(1) figure figcaption h3.s-tit {
+.big-box-type figure figcaption h3.s-tit {
   font-size: 3.6rem;
   font-weight: normal;
 }
-.big-box-type figure figcaption p.date, .post-list ul li:nth-child(3) figure figcaption p.date, .post-list-today ul li:nth-child(1) figure figcaption p.date {
+.big-box-type figure figcaption p.date {
   display: none;
 }
 
@@ -227,156 +227,170 @@ img {
   background-color: red;
 }
 
-.ban-box {
-  position: relative;
-  -webkit-user-select: none;
-     -moz-user-select: none;
-          user-select: none;
-  /*이동버튼*/
-  /*블릿버튼*/
+/* 컨텐츠 영역 속박스 */
+.main-area {
+  min-height: 700px;
+  padding: 15px;
+  padding-bottom: 100px;
 }
-.ban-box ul {
+
+/* 전체부모박스 */
+#cartlist {
   position: relative;
-  /* 3번째 슬라이드부터 보이기(앞에2개) */
-  left: -200%;
-  display: flex;
+  margin: 0 auto;
+  width: 60vw;
+  height: 100dvh; /* vh -> dvh : 다이나믹 vh */
+  background-color: rgba(255, 255, 255, 0.8);
 }
-.ban-box ul li {
-  position: relative;
-  width: 100%;
-  /* 강제축소 설정 끄기 */
-  flex-shrink: 0;
-  aspect-ratio: 1499/701;
-}
-.ban-box ul li img {
+
+/* 닫기버튼 */
+#cartlist .cbtn {
   position: absolute;
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-  -webkit-user-drag: none;
+  top: 5%;
+  right: 5%;
+  width: 40px;
+  height: 39px;
+  background: url(../../public/images/mv_btns.png) no-repeat;
+  background-position: -129px -342px;
+  transition: transform 0.3s;
 }
-.ban-box ul li .post-content {
-  position: absolute;
-  bottom: 0;
-  width: 100%;
+
+#cartlist .cbtn span {
+  display: none;
+}
+
+#cartlist table {
+  width: 90%;
+  margin: 50px auto;
+  font-size: 14px;
+  border-top: 2px solid rgb(34, 34, 34);
+  border-bottom: 2px solid rgb(34, 34, 34);
+  border-collapse: collapse;
+}
+
+#cartlist caption {
+  padding: 20px 0px;
+  -webkit-text-decoration: underline wavy;
+          text-decoration: underline wavy;
+  font-size: 30px;
+}
+
+#cartlist th {
+  padding: 15px 0px;
+  background-color: rgb(229, 229, 229);
+  font-size: 16px;
+}
+
+#cartlist td {
+  padding: 10px 0px;
+  border-top: 1px solid rgb(85, 85, 85);
   text-align: center;
-  padding: 4rem;
-  color: #fff;
-  text-shadow: 0 0 5px rgba(0, 0, 0, 0.4901960784);
 }
-.ban-box ul li .post-content p {
-  font-size: 1.6rem;
+
+#cartlist td img {
+  width: 50px;
 }
-.ban-box ul li .post-content h3 {
-  font-size: 4.2rem;
-}
-.ban-box .abtn {
-  position: absolute;
+
+/* 카트버튼 이미지 */
+#mycart {
+  position: fixed;
   top: 50%;
-  transform: translateY(-50%);
-  /*Y축 중앙이동*/
-  /*왼쪽버튼*/
-  /*오른쪽버튼*/
-}
-.ban-box .abtn.ab1 {
-  left: 50px;
-}
-.ban-box .abtn.ab2 {
-  right: 50px;
-}
-.ban-box .indic {
-  display: flex;
-  /* 플렉스박스 */
-  position: absolute;
-  bottom: 50px;
-  left: 80px;
-}
-.ban-box .indic li {
-  width: 16px;
-  height: 16px;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  z-index: 9999999;
   cursor: pointer;
-  /*회색블릿이미지가 보이게하는 class*/
+  display: none;
 }
-.ban-box .indic li img {
-  position: absolute;
-  /*이미지 겹치게*/
+
+/* 카트박스 사이드 이동상태 */
+#mycart.on {
+  position: fixed;
+  top: 50%;
+  left: calc(100% - 70px);
+  transform: translate(0, -50%);
+  background-color: lightblue;
+  border-radius: 10px 0 0 10px;
+  padding: 10px;
+  transition: 0.4s ease-in 2s;
 }
-.ban-box .indic li img:last-child {
-  /*회색이미지만 투명하게*/
+
+/* 원본 이미지 크기 */
+#mycart img {
+  width: 370px;
+}
+
+/* 변경 이미지 크기 */
+#mycart.on img {
+  width: 50px;
+  transition: 0.4s ease-in 2s;
+}
+
+/* 개수 표시박스 */
+#mycart .cntBx {
+  text-align: center;
+  font-size: 20px;
+  font-weight: bold;
+  color: blue;
   opacity: 0;
 }
-.ban-box .indic li.on img:last-child {
-  /*회색이미지만 투명하게*/
+
+#mycart.on .cntBx {
   opacity: 1;
-  /*우선적용!*/
+  transition: 0.4s 3s;
 }
 
-@media (max-width: 1000px) {
-  .ban-box ul li {
-    aspect-ratio: 979/931;
-  }
-}
-.post-list-today ul {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
-}
-.post-list-today ul li:nth-child(1) {
-  grid-area: 1/1/3/2;
-}
-.post-list-today ul img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
-}
-.post-list-today ul figure {
-  aspect-ratio: 1.3;
-}
-.post-list-today ul figcaption {
-  padding: 20px 0;
-}
-.post-list-today ul figcaption p.category {
-  font-size: 1.7rem;
-}
-.post-list-today ul figcaption h3.s-tit {
-  font-size: 2.2rem;
-  margin: 10px 0;
-}
-.post-list-today ul figcaption p.date {
-  font-size: 1.7rem;
-  color: #999;
+/* 수량증감 박스 */
+.cnt-part span,
+.cnt-part > div {
+  display: flex;
 }
 
-.post-list ul {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 20px;
+/* 입력창 */
+.item-cnt {
+  width: 20px;
 }
-.post-list ul li:nth-child(3) {
-  grid-area: 1/3/3/4;
+
+/* 증감 이미지버튼 */
+#cartlist .btn-cnt img {
+  display: block;
+  width: 18px;
 }
-.post-list ul img {
-  width: 100%;
-  height: 100%;
-  -o-object-fit: cover;
-     object-fit: cover;
+
+/* 반영 버튼 */
+.btn-insert {
+  position: absolute;
+  margin-left: 43px;
+  white-space: nowrap;
+  padding: 0;
+  display: none;
 }
-.post-list ul figure {
-  aspect-ratio: 1.3;
+
+/* 취소 버튼 */
+.btn-cancel {
+  position: absolute;
+  margin-left: 74px;
+  white-space: nowrap;
+  padding: 0;
+  display: none;
 }
-.post-list ul figcaption {
+
+/* 입력창에 포커스 갈때 다음형제요소 반영버튼 보이기 */
+.item-cnt:focus + .btn-insert {
+  /* outline: 10px dotted red; */
+  width: 34px;
+  transition: none;
+  /* display: inline-block; */
+}
+
+/* 페이징 파트 */
+.paging {
+  text-align: center;
   padding: 20px 0;
 }
-.post-list ul figcaption p.category {
-  font-size: 1.7rem;
-}
-.post-list ul figcaption h3.s-tit {
-  font-size: 2.2rem;
-  margin: 10px 0;
-}
-.post-list ul figcaption p.date {
-  font-size: 1.7rem;
-  color: #999;
-}/*# sourceMappingURL=main.css.map */
+
+.paging a,
+.paging b {
+  color: #222;
+  text-decoration: none;
+  font-size: 20px;
+}/*# sourceMappingURL=cart_list.css.map */
