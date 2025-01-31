@@ -1,5 +1,8 @@
 // 보그 PJ 회원가입 컴포넌트 - join.js
 
+// 유효성 검사 함수 불러오기
+import valid_member from "../function/valid_member.js";
+
 
 // 1. 회원가입 컴포넌트
 export const JoinComp = Vue.component("join-comp", {
