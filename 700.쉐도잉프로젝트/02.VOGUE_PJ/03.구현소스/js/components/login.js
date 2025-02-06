@@ -84,10 +84,10 @@ Vue.component("login-comp",{
     },
     // 3. 메서드
     methods: {
-      myTest(){
-        console.log('가상돔 메서드 실행',pm);
+      myTest(pm,txt){
+        console.log('가상돔 메서드 실행!',pm);
         this.msg = txt;
-      }
+      },
     },
     // 4. 데이터셋업파트
     created(){},
@@ -96,7 +96,7 @@ Vue.component("login-comp",{
         // 로그인 기능함수 호출!!!
         validLogin(this.myTest);
         // -> 뷰 컴포넌트 인스턴스의 메서드를 보냄!
-        // ->> DOM에서 뷰 메서드 실행하는 쉬운 방법
+        // ->> DOM에서 뷰 메서드 실행하는 쉬운방법!
 
         // CSS 변경하기 ///
         $('#css-set').attr('href','./css/login.css');

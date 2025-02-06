@@ -9,7 +9,6 @@ import { LoginComp } from "./components/login.js";
 import { TodayAreaComp } from "./components/today_area.js";
 import { FashionAreaComp } from "./components/fashion_area.js";
 import { MainComp } from "./components/main.js";
-
 // console.log(TopComp, BannerComp, JoinComp, LoginComp);
 
 // [ 뷰라우터 인스턴스 내보내기 ] /////
