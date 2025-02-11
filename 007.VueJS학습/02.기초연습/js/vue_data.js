@@ -42,12 +42,9 @@ Vue.component("my-comp", {
             </div>
         </div>
     `,
-
-    // 1-2. 데이터 셋업 리턴 메서드 ////
   data() {
     return {
-     // (1) GNB 메뉴 데이터 
-     gnbMenu:['','','','','']
+      myt: "나야나야나!",
     };
   },
 }); ////////// component //////////////

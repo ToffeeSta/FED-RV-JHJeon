@@ -1,9 +1,9 @@
 @charset "utf-8";
 
-/* 레이아웃 1 CSS */
+/* 레이아웃 2 CSS */
 
 /* 외부CSS 불러오기 */
-/* 12그리드 CSS */
+/* 12그리드 flex CSS */
 @import url(./grid_12_flex.css);
 
 /* 초기화 */

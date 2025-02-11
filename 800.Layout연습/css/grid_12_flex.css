@@ -26,7 +26,6 @@ flex-basis속성은 플렉스 자식요소 width */
     /* 패딩,보더 포함설정 : bxb */
     box-sizing: border-box;
 }
-
 /* 파티션 박스 셋팅 : 플렉스박스 */
 .cont-box{
     display: flex;
