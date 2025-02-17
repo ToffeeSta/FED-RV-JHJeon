@@ -53,7 +53,14 @@ export const TodayAreaComp = Vue.component("today-area-comp", {
     };
   },
   // 3. 메서드
-  methods: {},
+  methods: {
+    // 선택 데이터 가져오기 메서드
+    getData(dName) {
+      // dName - 데이터 이름
+      return 
+    }
+
+  },
   // 4. 데이터셋업파트
   created() {},
   // 5. DOM 셋업파트
