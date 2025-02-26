@@ -33,7 +33,7 @@ function Banner({ catName }) {
                   <h2>{v.tit1}</h2>
                   <p>{v.tit2}</p>
                   {
-                    // 버튼 데이터가 없르면 버튼 출력 안함
+                    // 버튼 데이터가 없으면 버튼출력안함
                     v.btn !== "" && <button>{v.btn}</button>
                   }
                 </section>
