@@ -1,29 +1,27 @@
 // 산너머산 메인 컴포넌트
 
 // 이야기 서브컴포넌트 불러오기
-import 이야기 from "./components/story";
-
-// 컨텍스트 프로바이더 불러오기
-import { 누구냐 } from "./components/provider";
+import 이야기 from "./components/story_프롭스다운";
 
 /********************************************** 
     1. props로 데이터를 전달하여 제목출력하기 
     -> props Down으로 데이터를 하위 컴포넌트에 전달
 **********************************************/
 
+// 스타일 객체
+const cssObj = {
+  padding: "20px",
+  borderRadius: "10px",
+  width: "60%",
+  margin: "20px auto",
+  textAlign: "center",
+  fontSize: "40px",
+  color: "#fff",
+  backgroundImage: "linear-gradient(to bottom,skyblue,navy)",
+};
+
 // 메인 컴포넌트 ////////////
 function MyHome() {
-  // 스타일 객체
-  const cssObj = {
-    padding: "20px",
-    borderRadius: "10px",
-    width: "60%",
-    margin: "20px auto",
-    textAlign: "center",
-    fontSize: "40px",
-    color: "#fff",
-    backgroundImage: "linear-gradient(to bottom,skyblue,navy)",
-  };
   return <MyRoom aa="세계의 산" bb="🌄" cc={cssObj} />;
 } /////// MyHome 컴포넌트 ///////////////
 
@@ -78,41 +76,33 @@ function 큰집() {
 
   // 코드 리턴구역 ///////
   return (
-    // 큰집 컨포넌트안에서 호출하는 컴포넌트를 감싸면서
-    // 컨텍스트 프로바이더를 셋팅해 준다! 
-    // -> 전역 속성/메서드 사용가능!
-    // -> 형식 : <프로바이더변수.Provider value={{변수,변수}}
-    <누구냐.Provider 
-    value={{mtName,setMtName,mtBoxCss,mtInfoBoxCss}}>
-      <할아버지 />
-    </누구냐.Provider>
+    <할아버지 mtName={mtName} mtBoxCss={mtBoxCss} mtInfoBoxCss={mtInfoBoxCss} />
   );
 } ////////////// 큰집 ///////////////////
 
 ///// 서브컴포넌트 ////////
-function 할아버지() {
-
+function 할아버지({ mtName, mtBoxCss, mtInfoBoxCss }) {
   // 코드 리턴구역 ///////
   return (
-    <아버지 />
+    <아버지 mtName={mtName} mtBoxCss={mtBoxCss} mtInfoBoxCss={mtInfoBoxCss} />
   );
 } ////////////// 할아버지 ///////////////////
-function 아버지() {
+function 아버지({ mtName, mtBoxCss, mtInfoBoxCss }) {
   // 코드 리턴구역 ///////
   return (
-    <아들 />
+    <아들 mtName={mtName} mtBoxCss={mtBoxCss} mtInfoBoxCss={mtInfoBoxCss} />
   );
 } ////////////// 아버지 ///////////////////
-function 아들() {
+function 아들({ mtName, mtBoxCss, mtInfoBoxCss }) {
   // 코드 리턴구역 ///////
   return (
-    <손녀 />
+    <손녀 mtName={mtName} mtBoxCss={mtBoxCss} mtInfoBoxCss={mtInfoBoxCss} />
   );
 } ////////////// 아들 ///////////////////
-function 손녀() {
+function 손녀({ mtName, mtBoxCss, mtInfoBoxCss }) {
   // 코드 리턴구역 ///////
   return (
-    <이야기 />
+    <이야기 mtName={mtName} mtBoxCss={mtBoxCss} mtInfoBoxCss={mtInfoBoxCss} />
   );
 } ////////////// 손녀 ///////////////////
 
