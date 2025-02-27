@@ -12,23 +12,26 @@ function SecIntro(props) {
   // 불러온 데이터 변수할당 ////
   const selData = secIntroData;
 
-  // 리턴코드 구역 //////////////
+  // 리턴 코드구역 ///////////
   return (
     <section className="sec-intro">
-      {/* 반복 단위 박스 */}
+      {/* 반복단위박스 */}
       {selData.map((v, i) => (
         <div key={i}>
           <div className="imbx">
-            <img src={v.isrc} alt={v.tit.split("^")[0]} />
+            <img
+              src={v.isrc}
+              alt={v.tit.split('^')[0]}
+            />
           </div>
           <div className="titbx">
-            <h3>{v.tit.split("^")[0]}</h3>
-            <h2>{v.tit.split("^")[1]}</h2>
+            <h3>{v.tit.split('^')[0]}</h3>
+            <h2>{v.tit.split('^')[1]}</h2>
           </div>
           <div className="btnbx">
             <Link to={v.link}>
               <button>{v.btn}</button>
-            </Link>
+            </Link>           
           </div>
         </div>
       ))}
