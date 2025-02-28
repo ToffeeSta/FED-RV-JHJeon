@@ -4,6 +4,8 @@ import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import Layout from './components/layout/Layout';
 import Main from './components/pages/Main';
 
+// 공통 css 불러오기 //
+import "./css/index.scss";
 
 /// 전체 PJ 공통 CSS 최상위 JS에서 불러오기 ///
 // import "./css/index.scss";
