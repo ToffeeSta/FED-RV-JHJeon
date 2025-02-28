@@ -53,7 +53,7 @@ export default function SwiperVid({ catName }) {
     const cbtn = $(".cbtn");
 
     // 2. 변경하기//////////////
-    // 2-1. 아이프레임 src경로 변경하기
+    // 2-1. 아이프레임 src경로 변경하기(바로 자동재생!)
     playVid.attr("src", vsrc+"?autoplay=1");
     // 2-2. 비디오 타이틀 넣기
     ifrTit.text(tit);
