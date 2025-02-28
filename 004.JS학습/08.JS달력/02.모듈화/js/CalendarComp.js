@@ -273,7 +273,7 @@ export default function MakeDallyeok(selEl) {
 
   // 3. 이벤트 설정하기 ////////////////////////
   // (1) 이전버튼에 함수 연결하기 : 달을 빼기위해 -1전달
-  myFn.addEvt(myFn.qs(selEl +" .btnL"), "click", 
+  myFn.addEvt(myFn.qs(selEl+" .btnL"), "click", 
   () => this.chgCalendar(-1));
   // (2) 다음버튼에 함수 연결하기 : 달을 더하기위해 1전달
   myFn.addEvt(myFn.qs(selEl+" .btnR"), "click", 
