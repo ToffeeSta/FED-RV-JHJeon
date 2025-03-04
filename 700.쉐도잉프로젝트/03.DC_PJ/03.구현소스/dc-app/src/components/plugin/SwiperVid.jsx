@@ -4,7 +4,7 @@ import React, { useRef, useState } from "react";
 // Import Swiper React components
 import { Swiper, SwiperSlide } from "swiper/react";
 
-// 제이쿼리 라이브 블러오기
+// 제이쿼리 라이브러리 불러오기
 import $ from "jquery";
 
 // Import Swiper styles
@@ -15,7 +15,7 @@ import "swiper/css/navigation";
 // 폰트어썸 불러오기
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faCirclePlay } from "@fortawesome/free-regular-svg-icons";
-// import { faHand } from "@fortawesome/free-solid-svg-icons";
+// import { faHand, faVolcano } from "@fortawesome/free-solid-svg-icons";
 // import { faGooglePlay } from "@fortawesome/free-brands-svg-icons";
 
 // 스와이퍼 비디오 모듈 CSS 불러오기
@@ -36,41 +36,42 @@ export default function SwiperVid({ catName }) {
   const selData = swVidData[catName];
   console.log(selData);
 
-  // [ 비디오 보이기 함수] ////
+  // [ 비디오 보이기 함수 ] /////
   const showVideo = (tit, vsrc) => {
     // tit - 비디오 제목
-    // vsrc - 비디오 링크
+    // vsrc - 비디오 URL
     console.log(tit, vsrc);
 
-    // 1. 대상 선정
-    // 1-1. 타이틀박스 : .vid-bx
+    // 1. 대상선정 /////////////
+    // 1-1. 전체박스 : .vid-bx
     const vidBx = $(".vid-bx");
     // 1-2. 아이프레임 : .play-vid iframe
     const playVid = $(".play-vid iframe");
     // 1-3. 타이틀박스 : .ifr-tit
     const ifrTit = $(".ifr-tit");
-    // 1-4. 닫기 버튼 : .cbtn
+    // 1-4. 닫기버튼 : .cbtn
     const cbtn = $(".cbtn");
 
-    // 2. 변경하기//////////////
-    // 2-1. 아이프레임 src경로 변경하기(바로 자동재생!)
-    playVid.attr("src", vsrc+"?autoplay=1");
+    // 2. 변경하기 ////////////
+    // 2-1. 아이프레임 src경로 변경하기(바로자동재생!)
+    playVid.attr("src", vsrc + "?autoplay=1");
+
     // 2-2. 비디오 타이틀 넣기
     ifrTit.text(tit);
+
     // 2-3. 전체박스 보이기
     vidBx.fadeIn(300);
+
     // 2-4. 닫기버튼 셋팅하기
     cbtn.on("click", () => {
-      // (1) 전체박스 사라지기
+      // (1) 전체박스 사라자기
       vidBx.fadeOut(300);
-      // (2) 아이프레임 src 초기화
+      // (2) iframe src 초기화
       playVid.attr("src", "");
-    }); //// click /////
-    
+    }); /// click ////
+  }; /////////// showVideo 함수 //////////
 
-  }; //// showVideo ////
-
-  // 리턴 코드구역 /////////
+  // 리턴 코드구역 //////////////////////
   return (
     <>
       <Swiper

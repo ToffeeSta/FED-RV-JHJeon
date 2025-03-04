@@ -7,7 +7,7 @@ import { catTit } from "../../js/data/vid_swipe";
 
 // 비디오 스와이프 CSS 불러오기
 import "../../css/modules/vid_swipe.scss";
-import SwiperVid from "../plugin/SwiperVid"
+import SwiperVid from "../plugin/SwiperVid";
 
 function VidSwipe({ catName }) {
   // catName - 데이터 분류명
@@ -25,9 +25,9 @@ function VidSwipe({ catName }) {
         {/* 비디오 중앙박스 */}
         <div className="play-vid">
           {/* 비디오 타이틀 */}
-          <h2 className="ifr-tit">BLUE BEETLE - OFFICIAL TRAILER</h2>
+          <h2 className="ifr-tit"></h2>
           {/* 아이프레임 */}
-          <iframe src="" allow="autoplay"></iframe>
+          <iframe src="https://www.youtube.com/embed/nI9uUv6AdoY" allow="autoplay"></iframe>
           {/* 닫기버튼 */}
           <button className="cbtn">×</button>
         </div>
