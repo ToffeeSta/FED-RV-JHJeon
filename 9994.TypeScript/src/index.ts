@@ -9,12 +9,20 @@ import {
   Role,
   // 개발팀 배열
   devTeam,
+  // 팀 메니저 객체
+  teamManager,
   // 활동 중인 개발자 필터 함수
   getActiveDevelopers,
   // 특정 기술을 가진 개발자 필터 함수
   findBySkill,
   // 특정 역할을 가진 개발자 필터 함수
   findByRole,
+  // 중고급 개발자 필터 함수
+  getSeniorDevelopers,
+  // 개발자 보너스 함수
+  getDevBonus,
+  // 개발자 보너스 추론리턴타입(제네릭!)
+  DevBonusInfo,
 } from "./devTeam";
 
 function greet(name: string): string {
@@ -108,7 +116,7 @@ console.log("😎 void 함수");
 logMessage("코딩의 신");
 logMessage("타입스크립트");
 
-// 8. 인터섹션 타입 선언 :
+// 8. 인터섹션 타입 선언 : 
 // &를 쓰기도하고 {}로 한꺼번에 셋팅하기도함
 type Employee = {
   name: string;
@@ -157,6 +165,8 @@ console.log(student1);
 console.log(student2);
 
 // 9. enum 타입 선언
+// -> 상수 데이터를 안정적으로 쓰기 위한 타입
+// -> 이놈(enum)! 에러잡아!
 enum AISystem {
   Cgpt = "Chat GPT",
   DallE = "DALL-E",
@@ -172,17 +182,62 @@ console.log(AISystem.MidJourney);
 console.log(AISystem.StableDiffusion);
 console.log(AISystem.Cop);
 
-// 10. 제네릭(Generics) 타입 선언
-// -> 타입을 외부에서 유연하게 전달 받을 수 있는 방식
+
+// 10. 제네릭(Generics) 타입 함수에 적용하기
+// -> 타입을 외부에서 유연하게 전달받을 수 있는 방식
 
 // 배열요소 콘솔 출력 제네릭함수
 function printArray<T>(arr: T[]): void {
   console.log("😎 제네릭타입");
-  arr.forEach((item) => console.log(item));
-}
+  arr.forEach((val, idx) => {
+    console.log(idx,'번째 : ',val);
+  });
+} //////// printArray 제네릭 함수 //////
 
-// 11. 제네릭 타입 설정하기
-type ApiRe
+// 숫자 배열 제네릭함수 호출예
+const numberArray: number[] = 
+[1000, 2000, 3000, 4000, 5000];
+// 제네릭 함수 호출시 형을 지정하여 호출하기
+// printArray<number>(numberArray);
+// 데이터 형을 지정하지 않아도 자동으로 형을 감지한다!(타입추론)
+printArray(numberArray);
+
+// 문자 배열 제네릭함수 호출예
+const stringArray: string[] = 
+["코딩의 신", "타입스크립트", "리액트"];
+printArray<string>(stringArray);
+
+// 11. 제네릭 타입 설정하기 /////
+// API응답 관련 속성 타입선언
+type ApiResponse<T> = {
+  data: T;
+  success: boolean;
+  error?: string;
+};
+
+// 사용자정보 전달 : 객체를 변수에 할당함! ////
+const userResponse: 
+ApiResponse<{name: string; age: number}> = {
+  data: {name: "강상모", age: 20},
+  success: true,
+};
+
+console.log("😎 제네릭타입");
+console.log(userResponse);
+
+// 12. 제네릭 ReturnType 사용하기 /////////////
+// -> 함수의 반환값을 자동으로 추론하여 타입을 설정함
+// sayGoodBye 함수의 리턴 타입을 가져오기
+type SayGoodByeReturn = ReturnType<typeof sayGoodBye>;
+
+// 해당타입을 사용하는 변수
+const farewellMessage: SayGoodByeReturn =
+sayGoodBye("난 개발천재야!", true, "정말로 굿바이~~!");
+
+console.log("😎 제네릭 ReturnType");
+console.log(farewellMessage);
+
+
 
 // ★★★★★★★★★★★★★★★★★★★★★ //
 // 개발자 회사 샘플 찍어보기 //////////////////
@@ -211,3 +266,45 @@ console.log(findBySkill(devTeam, Skill.React));
 
 console.log("👷‍♀️🦸‍♀️VueJS 스킬을 가진 개발자 리스트:");
 console.log(findBySkill(devTeam, Skill.VueJs));
+
+console.log("👷‍♀️🦸‍♀️팀 매니저 정보:");
+console.log(teamManager);
+
+// 중고급 개발자 필터링 함수 호출하여 결과 받기 /////
+const seniorDevelopers = 
+getSeniorDevelopers(devTeam, (dev) => dev.year >= 5);
+
+console.log("👷‍♀️🦸‍♀️중고급 개발자 리스트:");
+console.log(seniorDevelopers);
+
+// 모든 개발자를 화면에 출력해 보자! ////////
+// -> 개발자 등급과 보너스도 출력하기
+
+const devListContainer = 
+document.getElementById('dev-list') as HTMLElement;
+
+// 개발자 목록 출력하기 /////
+devTeam.map((dev)=>{
+  // (1) 개발자 정보 출력을 위한 div 요소 생성
+  const devInfo = document.createElement('div');
+
+  // (2) 개발자 정보 div에 클래스 추가
+  devInfo.classList.add('dev-info');
+
+  // (3) 개발자 레벨과 보너스 정보 조회하기
+  const devBonus : DevBonusInfo = getDevBonus(dev.year);
+
+  // (4) 개발자 정보 div에 HTML 추가
+  // -> 개발자 이름, 나이, 경력, 역할, 기술스택, 등급, 보너스
+  devInfo.innerHTML = `
+    <h3>👨‍🌾 Developer: ${dev.name}</h3>
+    <p>🎍 Age: ${dev.age}세</p>
+    <p>🎎 Year: ${dev.year}년차</p>
+    <p>🎡 Role: ${dev.role}개발자</p>
+    <p>🥽 Skills: ${dev.skills.join(', ')}</p>
+    <p>🥇 Level: ${devBonus.level}</p>
+    <p>📀 Bonus: ${devBonus.bonus.toLocaleString()+'만원'}</p>
+    <hr />
+  `;
+  devListContainer.appendChild(devInfo);
+}); ///// map //////

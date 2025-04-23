@@ -10,12 +10,18 @@
 
 __webpack_require__.r(__webpack_exports__);
 /* harmony export */ __webpack_require__.d(__webpack_exports__, {
+/* harmony export */   DevLevel: () => (/* binding */ DevLevel),
 /* harmony export */   Role: () => (/* binding */ Role),
 /* harmony export */   Skill: () => (/* binding */ Skill),
 /* harmony export */   devTeam: () => (/* binding */ devTeam),
 /* harmony export */   findByRole: () => (/* binding */ findByRole),
 /* harmony export */   findBySkill: () => (/* binding */ findBySkill),
-/* harmony export */   getActiveDevelopers: () => (/* binding */ getActiveDevelopers)
+/* harmony export */   getActiveDevelopers: () => (/* binding */ getActiveDevelopers),
+/* harmony export */   getDevBonus: () => (/* binding */ getDevBonus),
+/* harmony export */   getDevLevel: () => (/* binding */ getDevLevel),
+/* harmony export */   getSeniorDevelopers: () => (/* binding */ getSeniorDevelopers),
+/* harmony export */   levelBonusList: () => (/* binding */ levelBonusList),
+/* harmony export */   teamManager: () => (/* binding */ teamManager)
 /* harmony export */ });
 /**************************************
 🧩 실습 주제: “우리 개발팀 인력 관리 시스템”
@@ -97,6 +103,7 @@ const devTeam = [
     {
         name: "김상중하",
         age: 30,
+        year: 20,
         role: Role.Frontend,
         skills: [Skill.React, Skill.NodeJs, Skill.TypeScript],
         isActive: false,
@@ -104,6 +111,7 @@ const devTeam = [
     {
         name: "이주현",
         age: 25,
+        year: 5,
         role: Role.Backend,
         skills: [Skill.NodeJs, Skill.VueJs, Skill.Express, Skill.MongoDB],
         isActive: true,
@@ -111,6 +119,7 @@ const devTeam = [
     {
         name: "김하루방",
         age: 32,
+        year: 10,
         role: Role.Fullstack,
         skills: [
             Skill.React,
@@ -124,6 +133,7 @@ const devTeam = [
     {
         name: "조삼모사",
         age: 48,
+        year: 20,
         role: Role.Frontend,
         skills: [Skill.TypeScript, Skill.Sass],
         isActive: false,
@@ -131,6 +141,7 @@ const devTeam = [
     {
         name: "김한결",
         age: 27,
+        year: 5,
         role: Role.Backend,
         skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
         isActive: true,
@@ -138,6 +149,7 @@ const devTeam = [
     {
         name: "이상민",
         age: 26,
+        year: 5,
         role: Role.Fullstack,
         skills: [
             Skill.React,
@@ -151,6 +163,7 @@ const devTeam = [
     {
         name: "김하은",
         age: 24,
+        year: 3,
         role: Role.Frontend,
         skills: [Skill.React, Skill.Sass],
         isActive: true,
@@ -158,6 +171,7 @@ const devTeam = [
     {
         name: "이주호",
         age: 23,
+        year: 2,
         role: Role.Backend,
         skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
         isActive: true,
@@ -165,6 +179,7 @@ const devTeam = [
     {
         name: "김상민",
         age: 29,
+        year: 8,
         role: Role.Fullstack,
         skills: [Skill.React, Skill.NodeJs, Skill.Express, Skill.MongoDB],
         isActive: true,
@@ -172,6 +187,7 @@ const devTeam = [
     {
         name: "박상현",
         age: 25,
+        year: 5,
         role: Role.Backend,
         skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
         isActive: true,
@@ -201,6 +217,65 @@ role // 역할
 ) {
     return team.filter((dev) => dev.role === role);
 } ////////// findByRole 함수 //////////////
+// 위의 메니저 값 셋팅하기 /////
+const teamManager = {
+    name: "박상현",
+    teamSize: devTeam.length,
+    managerRoles: [Role.Frontend, Role.Backend],
+};
+// 8. 제네릭을 활용한 중급,고급 개발자 필터함수 만들기 ////
+// -> 기준 : 중고급 개발자는 경력 5년이상이다! 
+// 기존에 경력년수가 없으므로 year 속성을 추가함!
+function getSeniorDevelopers(items, // 개발자 배열객체 데이터
+filterFn // 검증함수
+) {
+    // 검증함수결과가 true인 배열값만 반환
+    return items.filter(filterFn);
+} ////////// getSeniorDevelopers 함수 //////////////
+// 9. 개발자 등급 열거형(enum)으로 정의하기 /////
+var DevLevel;
+(function (DevLevel) {
+    DevLevel["Junior"] = "Junior";
+    DevLevel["Middle"] = "Middle";
+    DevLevel["Senior"] = "Senior";
+    DevLevel["Leader"] = "Leader";
+})(DevLevel || (DevLevel = {}));
+// 10. 튜플을 활용한 등급별 보너스 정보배열 /////
+const levelBonusList = [
+    [DevLevel.Junior, 500],
+    [DevLevel.Middle, 1000],
+    [DevLevel.Senior, 2000],
+    [DevLevel.Leader, 3000],
+];
+// 11. 특정 개발자 경력에 따라 등급을 계산하는 함수 /////
+function getDevLevel(year) {
+    if (year >= 15)
+        return DevLevel.Leader;
+    if (year >= 8)
+        return DevLevel.Senior;
+    if (year >= 4)
+        return DevLevel.Middle;
+    return DevLevel.Junior;
+} ////////// getDevLevel 함수 //////////////
+// 12. 개발자 보너스 금액 조회 함수 /////////
+function getDevBonus(year) {
+    var _a;
+    // (1) 경력년수로 레벨 알아오기
+    const level = getDevLevel(year);
+    // (2) 레벨별 보너스 계산하기
+    const bonus = ((_a = levelBonusList.find((v) => v[0] === level)) === null || _a === void 0 ? void 0 : _a[1]) || 0;
+    // find로 찾은 값이 있으면.[1] 두번째 배열값 읽기
+    // 이값이 없으면 0을 할당
+    // -> 배열?.[순번] -> 배열일 경우 적용여부판단하는 구문
+    // ->>> 이런 방식을 옵셔널 체이닝이라고함!(배열없으면 undefined)
+    // -> 변수 = 값1 || 값2 ->>> 값1이 없을때 값2를 할당
+    // (1),(2) 결과값을 객체로 반환하기
+    return { level, bonus };
+    // -> 이 함수의 리턴값 타입은 중간에 개발시 변경될 수 있다!
+    // 따라서 타입지정은 하지않고
+    // 추론을 통해 자동으로 타입이 결정되도록 한다!
+    // -> ReturnType<typeof 함수명> 형식으로 사용가능하다!
+} ////////// getDevBonus 함수 //////////////
 
 
 /***/ })
@@ -363,6 +438,8 @@ console.log("😎 인터섹션타입");
 console.log(student1);
 console.log(student2);
 // 9. enum 타입 선언
+// -> 상수 데이터를 안정적으로 쓰기 위한 타입
+// -> 이놈(enum)! 에러잡아!
 var AISystem;
 (function (AISystem) {
     AISystem["Cgpt"] = "Chat GPT";
@@ -377,6 +454,35 @@ console.log(AISystem.DallE);
 console.log(AISystem.MidJourney);
 console.log(AISystem.StableDiffusion);
 console.log(AISystem.Cop);
+// 10. 제네릭(Generics) 타입 함수에 적용하기
+// -> 타입을 외부에서 유연하게 전달받을 수 있는 방식
+// 배열요소 콘솔 출력 제네릭함수
+function printArray(arr) {
+    console.log("😎 제네릭타입");
+    arr.forEach((val, idx) => {
+        console.log(idx, '번째 : ', val);
+    });
+} //////// printArray 제네릭 함수 //////
+// 숫자 배열 제네릭함수 호출예
+const numberArray = [1000, 2000, 3000, 4000, 5000];
+// 제네릭 함수 호출시 형을 지정하여 호출하기
+// printArray<number>(numberArray);
+// 데이터 형을 지정하지 않아도 자동으로 형을 감지한다!(타입추론)
+printArray(numberArray);
+// 문자 배열 제네릭함수 호출예
+const stringArray = ["코딩의 신", "타입스크립트", "리액트"];
+printArray(stringArray);
+// 사용자정보 전달 : 객체를 변수에 할당함! ////
+const userResponse = {
+    data: { name: "강상모", age: 20 },
+    success: true,
+};
+console.log("😎 제네릭타입");
+console.log(userResponse);
+// 해당타입을 사용하는 변수
+const farewellMessage = sayGoodBye("난 개발천재야!", true, "정말로 굿바이~~!");
+console.log("😎 제네릭 ReturnType");
+console.log(farewellMessage);
 // ★★★★★★★★★★★★★★★★★★★★★ //
 // 개발자 회사 샘플 찍어보기 //////////////////
 // ★★★★★★★★★★★★★★★★★★★★★ //
@@ -396,6 +502,37 @@ console.log("👷‍♀️🦸‍♀️React 스킬을 가진 개발자 리스�
 console.log((0,_devTeam__WEBPACK_IMPORTED_MODULE_0__.findBySkill)(_devTeam__WEBPACK_IMPORTED_MODULE_0__.devTeam, _devTeam__WEBPACK_IMPORTED_MODULE_0__.Skill.React));
 console.log("👷‍♀️🦸‍♀️VueJS 스킬을 가진 개발자 리스트:");
 console.log((0,_devTeam__WEBPACK_IMPORTED_MODULE_0__.findBySkill)(_devTeam__WEBPACK_IMPORTED_MODULE_0__.devTeam, _devTeam__WEBPACK_IMPORTED_MODULE_0__.Skill.VueJs));
+console.log("👷‍♀️🦸‍♀️팀 매니저 정보:");
+console.log(_devTeam__WEBPACK_IMPORTED_MODULE_0__.teamManager);
+// 중고급 개발자 필터링 함수 호출하여 결과 받기 /////
+const seniorDevelopers = (0,_devTeam__WEBPACK_IMPORTED_MODULE_0__.getSeniorDevelopers)(_devTeam__WEBPACK_IMPORTED_MODULE_0__.devTeam, (dev) => dev.year >= 5);
+console.log("👷‍♀️🦸‍♀️중고급 개발자 리스트:");
+console.log(seniorDevelopers);
+// 모든 개발자를 화면에 출력해 보자! ////////
+// -> 개발자 등급과 보너스도 출력하기
+const devListContainer = document.getElementById('dev-list');
+// 개발자 목록 출력하기 /////
+_devTeam__WEBPACK_IMPORTED_MODULE_0__.devTeam.map((dev) => {
+    // (1) 개발자 정보 출력을 위한 div 요소 생성
+    const devInfo = document.createElement('div');
+    // (2) 개발자 정보 div에 클래스 추가
+    devInfo.classList.add('dev-info');
+    // (3) 개발자 레벨과 보너스 정보 조회하기
+    const devBonus = (0,_devTeam__WEBPACK_IMPORTED_MODULE_0__.getDevBonus)(dev.year);
+    // (4) 개발자 정보 div에 HTML 추가
+    // -> 개발자 이름, 나이, 경력, 역할, 기술스택, 등급, 보너스
+    devInfo.innerHTML = `
+    <h3>👨‍🌾 Developer: ${dev.name}</h3>
+    <p>🎍 Age: ${dev.age}세</p>
+    <p>🎎 Year: ${dev.year}년차</p>
+    <p>🎡 Role: ${dev.role}개발자</p>
+    <p>🥽 Skills: ${dev.skills.join(', ')}</p>
+    <p>🥇 Level: ${devBonus.level}</p>
+    <p>📀 Bonus: ${devBonus.bonus.toLocaleString() + '만원'}</p>
+    <hr />
+  `;
+    devListContainer.appendChild(devInfo);
+}); ///// map //////
 
 })();
 

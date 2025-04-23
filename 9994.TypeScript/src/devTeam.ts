@@ -75,6 +75,8 @@ export type Developer = {
   name: string;
   // 나이
   age: number;
+  // 경력
+  year: number;
   // 역할(Frontend, Backend, Fullstack)
   role: Role;
   // 기술(예: React, Node.js, TypeScript)
@@ -98,6 +100,7 @@ export const devTeam: Developer[] = [
   {
     name: "김상중하",
     age: 30,
+    year: 20,
     role: Role.Frontend,
     skills: [Skill.React, Skill.NodeJs, Skill.TypeScript],
     isActive: false,
@@ -105,6 +108,7 @@ export const devTeam: Developer[] = [
   {
     name: "이주현",
     age: 25,
+    year: 5,
     role: Role.Backend,
     skills: [Skill.NodeJs, Skill.VueJs, Skill.Express, Skill.MongoDB],
     isActive: true,
@@ -112,6 +116,7 @@ export const devTeam: Developer[] = [
   {
     name: "김하루방",
     age: 32,
+    year: 10,
     role: Role.Fullstack,
     skills: [
       Skill.React,
@@ -125,6 +130,7 @@ export const devTeam: Developer[] = [
   {
     name: "조삼모사",
     age: 48,
+    year: 20,
     role: Role.Frontend,
     skills: [Skill.TypeScript, Skill.Sass],
     isActive: false,
@@ -132,6 +138,7 @@ export const devTeam: Developer[] = [
   {
     name: "김한결",
     age: 27,
+    year: 5,
     role: Role.Backend,
     skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
     isActive: true,
@@ -139,6 +146,7 @@ export const devTeam: Developer[] = [
   {
     name: "이상민",
     age: 26,
+    year: 5,
     role: Role.Fullstack,
     skills: [
       Skill.React,
@@ -152,6 +160,7 @@ export const devTeam: Developer[] = [
   {
     name: "김하은",
     age: 24,
+    year: 3,
     role: Role.Frontend,
     skills: [Skill.React, Skill.Sass],
     isActive: true,
@@ -159,6 +168,7 @@ export const devTeam: Developer[] = [
   {
     name: "이주호",
     age: 23,
+    year: 2,
     role: Role.Backend,
     skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
     isActive: true,
@@ -166,6 +176,7 @@ export const devTeam: Developer[] = [
   {
     name: "김상민",
     age: 29,
+    year: 8,
     role: Role.Fullstack,
     skills: [Skill.React, Skill.NodeJs, Skill.Express, Skill.MongoDB],
     isActive: true,
@@ -173,6 +184,7 @@ export const devTeam: Developer[] = [
   {
     name: "박상현",
     age: 25,
+    year: 5,
     role: Role.Backend,
     skills: [Skill.NodeJs, Skill.Express, Skill.MongoDB],
     isActive: true,
@@ -211,3 +223,79 @@ export function findByRole(
 } ////////// findByRole 함수 //////////////
 
 
+
+// 7. 인터페이스를 활용한 팀 메니저 타입 정의 //////
+export interface TeamMamager {
+  // 팀 매니저의 이름
+  name: string;
+  // 팀의 크기
+  teamSize: number;
+  // 어떤 역할들을 관리하는지
+  managerRoles: Role[]; 
+}
+
+// 위의 메니저 값 셋팅하기 /////
+export const teamManager: TeamMamager = {
+    name: "박상현",
+    teamSize: devTeam.length,
+    managerRoles: [Role.Frontend, Role.Backend],
+};
+
+// 8. 제네릭을 활용한 중급,고급 개발자 필터함수 만들기 ////
+// -> 기준 : 중고급 개발자는 경력 5년이상이다! 
+// 기존에 경력년수가 없으므로 year 속성을 추가함!
+export function getSeniorDevelopers<T>(
+    items: T[], // 개발자 배열객체 데이터
+    filterFn: (item: T) => boolean // 검증함수
+): T[] {
+    // 검증함수결과가 true인 배열값만 반환
+  return items.filter(filterFn);
+} ////////// getSeniorDevelopers 함수 //////////////
+
+// 9. 개발자 등급 열거형(enum)으로 정의하기 /////
+export enum DevLevel {
+  Junior = "Junior",
+  Middle = "Middle",
+  Senior = "Senior",
+  Leader = "Leader",
+}
+
+// 10. 튜플을 활용한 등급별 보너스 정보배열 /////
+export const levelBonusList: [DevLevel, number][] = [
+  [DevLevel.Junior, 500],
+  [DevLevel.Middle, 1000],
+  [DevLevel.Senior, 2000],
+  [DevLevel.Leader, 3000],
+];
+
+// 11. 특정 개발자 경력에 따라 등급을 계산하는 함수 /////
+export function getDevLevel(year: number): DevLevel {
+  if (year >= 15) return DevLevel.Leader;
+  if (year >= 8) return DevLevel.Senior;
+  if (year >= 4) return DevLevel.Middle;
+  return DevLevel.Junior;
+} ////////// getDevLevel 함수 //////////////
+
+// 12. 개발자 보너스 금액 조회 함수 /////////
+export function getDevBonus(year: number) {
+  // (1) 경력년수로 레벨 알아오기
+  const level = getDevLevel(year);
+  // (2) 레벨별 보너스 계산하기
+  const bonus = 
+  levelBonusList.find((v) => v[0] === level)?.[1]||0;
+  // find로 찾은 값이 있으면.[1] 두번째 배열값 읽기
+  // 이값이 없으면 0을 할당
+  // -> 배열?.[순번] -> 배열일 경우 적용여부판단하는 구문
+  // ->>> 이런 방식을 옵셔널 체이닝이라고함!(배열없으면 undefined)
+  // -> 변수 = 값1 || 값2 ->>> 값1이 없을때 값2를 할당
+
+  // (1),(2) 결과값을 객체로 반환하기
+  return {level, bonus};
+  // -> 이 함수의 리턴값 타입은 중간에 개발시 변경될 수 있다!
+  // 따라서 타입지정은 하지않고
+  // 추론을 통해 자동으로 타입이 결정되도록 한다!
+  // -> ReturnType<typeof 함수명> 형식으로 사용가능하다!
+} ////////// getDevBonus 함수 //////////////
+
+// 13. 반환타입 추론 후 재사용 : 중요!!! 이것때문에 이예제함! ////
+export type DevBonusInfo = ReturnType<typeof getDevBonus>;
